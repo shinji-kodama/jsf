@@ -1,0 +1,365 @@
+body{
+    background-color: black;
+}
+
+h1{
+    font-size: 32px;
+    text-align: center;
+    color: white;
+}
+
+h2{
+    font-size: 24px;
+    text-align: center;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.wrap{
+    width: 1200px;
+    margin: 0 auto;
+    background-color: black;
+}
+
+.box00{
+    height: 46px;
+    border-bottom: solid 1px black;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left:  auto;
+    margin-bottom: 20px;
+    color:white;
+
+    border: solid 3px white;
+    border-radius: 3%;
+    background-color: black;
+
+}
+
+.box01{
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    /* margin-top: 20px; */
+    display:flex;
+    justify-content: space-between;
+}
+
+.box01 .center{
+    width:200px;
+    color:white;
+
+    border-bottom: solid 3px white;
+    border-top: solid 3px white;
+    border-radius: 3%;
+    background-color: black;
+
+}
+
+.box01 .left{
+    width:500px;
+    color:white;
+
+    border: solid 3px white;
+    border-radius: 3%;
+    background-color: black;
+}
+
+.box01 .right{
+    width:500px;
+
+    color:white;
+
+    border: solid 3px white;
+    border-radius: 3%;
+    background-color: black;
+
+}
+
+.box01 h2{
+    margin-top: 5px;
+}
+
+.box02{
+    width:100%;
+    height:400px;
+    background: url(../img02/plane.png) no-repeat center center /cover;
+    border-bottom: solid 1px black;
+    border-left: solid black 1px;
+    border-right: solid 1px black;
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+.box02 .left{
+    width:500px;
+    height:400px;
+    position: relative;
+
+    /* border: solid 1px black; */
+}
+
+.box02 .left p{
+    position:absolute;
+    color: red;
+    font-size: 54px;
+    font-weight: bolder;
+    top:100px;
+    left:15px;
+    z-index: 10;
+}
+
+.box02 .left p.slidein.is-animated{
+    animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(180px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+    }
+    40%,100% {
+        opacity: 1;
+    }
+}
+
+.box02 .left .imgbox{
+    width: 200px;
+    height: 200px;
+
+    position: absolute;
+    top: 60%;
+    left: 0;
+    transform: translateY(-50%);
+    /* border: solid 1px black;; */
+}
+
+.imgbox img{
+    cursor: default;
+}
+
+.item01{
+    width: 50px;
+    height:50px;
+
+    position: absolute;
+    bottom : 5px;
+    left: 10px;
+    border: solid 3px white;
+    border-radius: 15%;
+    background-color: black;
+}
+
+.item02{
+    width: 50px;
+    height:50px;
+
+    position: absolute;
+    bottom : 5px;
+    left: 75px;
+    border: solid 3px white;
+    border-radius: 15%;
+    background-color: black;
+}
+
+.item03{
+    width: 50px;
+    height:50px;
+
+    position: absolute;
+    bottom : 5px;
+    left: 140px;
+    border: solid 3px white;
+    border-radius: 15%;
+    background-color: black;
+}
+
+.my_str_attack{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 80px;
+    left: 300px;
+
+    /* background-color: black;
+    border: solid 3px white;
+    border-radius: 10%;
+    opacity: 0.85; */
+}
+
+.my_counter{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 300px;
+    left: 300px;
+
+    /* background-color: black;
+    border: solid 3px white;
+    border-radius: 10%;
+    opacity: 0.85; */
+}
+
+.my_guard{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 190px;
+    left: 240px;
+
+    /* background-color: black;
+    border: solid 3px white;
+    border-radius: 10%;
+    opacity: 0.85; */
+}
+
+.my_attack{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 190px;
+    left: 360px;
+
+    /* background-color: black;
+    border: solid 3px white;
+    border-radius: 10%;
+    opacity: 0.85; */
+}
+
+.box02 .center{
+    width:200px;
+    height:400px;
+    position: relative;
+    
+    /* border: solid 1px black; */
+    
+}
+
+.box02 .center p{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: bold;
+    color:red;    
+}
+
+.box02 .right{
+    width:500px;
+    height:400px;
+    position: relative;
+
+    /* border: solid 1px black; */
+}
+
+.box02 .right p{
+    position:absolute;
+    color: red;
+    font-size: 54px;
+    font-weight: bolder;
+    top:100px;
+    right:15px;
+    z-index: 10;
+}
+
+.box02 .right .imgbox{
+    width: 250px;
+    height: 220px;
+
+    position: absolute;
+    top: 60%;
+    right: 0;
+    transform: translateY(-50%);
+    
+    /* border: solid 1px black;; */
+
+}
+
+.pc_attack{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 190px;
+    right: 360px;
+
+    /* border: solid 1px black; */
+}
+
+.pc_guard{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 190px;
+    right: 240px;
+
+    /* border: solid 1px black; */
+}
+
+.pc_counter{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 300px;
+    right: 300px;
+
+    /* border: solid 1px black; */
+}
+
+.pc_str_attack{
+    width: 80px;
+    height: 80px;
+
+    position: absolute;
+    top: 80px;
+    right: 300px;
+
+    /* border: solid 1px black; */
+}
+
+
+.box03{
+    width: 100%;
+    height: 150px;
+
+    color:white;
+
+    border: solid 3px white;
+    border-radius: 1%;
+    background-color: black;
+
+}
+
+.box03 .left{
+    width: 600px;
+    height: 100px;
+
+    border: solid 1px black;
+
+}
+
+.box03 p{
+    font-size: 24px;
+}
+
+.box99{
+    text-align: right;
+    font-size: 24px;
+    background-color: white;
+}

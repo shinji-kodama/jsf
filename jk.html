@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>じゃんけん</title>
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel="stylesheet" href="css/jk.css">
+
+
+    <!-- Slick cssの読み込み -->
+    <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" /> -->
+
+    <!-- jQuery本体読み込み -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="box00">
+            <h1>じゃんけんゲーム</h1>
+        </header>
+        
+        <div class="box01">
+            <div class="left">
+                <h2>HP : <span id="my_hp">100</span> / <span id="M_my_hp">100</span></h2>
+            </div>
+            <div class="center">
+                <h2>Turn <span id="turn"></span></h2>
+            </div>
+            <div class="right">
+                <h2>HP : <span id="pc_hp">100</span> / <span id="M_pc_hp">100</span></h2>
+            </div>
+        </div>
+
+        <div class="box02">
+            <div class="left">
+                <p>
+                    <span id="my_damage"></span>
+                </p>
+                <div id="my_pic" class="imgbox">
+                    <img src="img02/bong.png" alt="">
+                </div>
+                <div class="item01">
+                    <span id="item01"></span>
+                </div>
+                <div class="item02">
+                    <span id="item02"></span>
+                </div>
+                <div class="item03">
+                    <span id="item03"></span>
+                </div>
+                <div class="my_attack">
+                    <span id="my_attack"></span>
+                </div>
+                <div class="my_guard">
+                    <span id="my_guard"></span>
+                </div>
+                <div class="my_str_attack">
+                    <span id="my_str_attack"></span>
+                </div>
+                <div class="my_counter">
+                    <span id="my_counter"></span>
+                </div>
+            </div>
+            <div class="center">
+                <p><span id="judgement"></span></p>
+            </div>
+            <div class="right">
+                <p>
+                    <span id="pc_damage"></span>
+                </p>
+                <div id="pc_pic" class="imgbox">
+                    <img src="img02/donkeyy.png" alt="">
+                </div>
+                <div class="pc_attack">
+                    <span id="pc_attack"></span>
+                </div>
+                <div class="pc_guard">
+                    <span id="pc_guard"></span>
+                </div>
+                <div class="pc_str_attack">
+                    <span id="pc_str_attack"></span>
+                </div>
+                <div class="pc_counter">
+                    <span id="pc_counter"></span>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="box03">
+            <p><span id="message01">ド○キーコング が 現れた！</span></p>
+            <p><span id="message02">剣 や 盾 を click して 敵 を 倒そう！</span></p>
+            <p><span id="message03"></span></p>
+            <p><span id="message04"></span></p>
+            <p><span id="message05"></span></p>
+        </div>
+        
+        <footer class="box99">
+            <a href="./donkey.html">
+                <span id="owari"></span>
+            </a>
+        </footer>
+    </div>
+    
+    <!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
+    <script src="js/jk.js"></script>
+ 
+
+</body>
+
+</html>

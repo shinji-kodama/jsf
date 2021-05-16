@@ -1,0 +1,46 @@
+{
+  "frame": {
+    "width": 70,
+    "height": 73,
+    "rows": 6,
+    "cols": 12
+  },
+  "animations": {
+    "stand": {
+      "frames": [0],
+      "next": "stand",
+      "frequency": 4
+    },
+    "fly": {
+      "frames": [19],
+      "next": "fly",
+      "frequency": 4
+    },
+    "front": {
+      "frames": [6, 7, 8, 7],
+      "next": "front",
+      "frequency": 4
+    },
+    "back": {
+      "frames": [16, 17, 18, 19],
+      "next": "back",
+      "frequency": 4
+    },
+    "left": {
+      "frames": [1, 2],
+      "next": "left",
+      "frequency": 4
+    },
+    "right": {
+      "frames": [6, 7],
+      "next": "right",
+      "frequency": 4
+    },
+    "damage": {
+      "frames": [59]
+    },
+    "die": {
+      "frames": [67]
+    }
+  }
+}
