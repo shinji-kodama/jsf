@@ -461,6 +461,76 @@
         0% { transform: translateX(0%);}
       100% { transform: translateX(-100%);}
     }
+
+/* <!-- ここからskyway--------------------------------------------- --> */
+    .sky {
+      position: absolute;
+      top:-62px;
+      left:200px;
+      color:white;
+      /* display: flex;
+      justify-content: center; */
+      
+      /* border: solid 1px white; */
+      width: 280px;
+      height: 50px;
+      /* background: #fff; */
+    }
+
+    .sky input {
+      height: 18px;
+      width: 150px;
+      position:absolute;
+      bottom:0;
+      background-color: #fff;
+      border: 1px solid black;
+      color:black;
+
+      text-indent: 3px;
+      pointer-events: none;
+    }
+    .sky span {
+      position:absolute;
+      bottom:22px;
+      left:0px;
+    }
+    .sky button{
+      height: 22px;
+      position:absolute;
+      color:black;
+      bottom:20px;
+      width:55px;
+      right:0;
+      pointer-events: auto;
+    }
+
+    .sky #js-join-trigger {
+      right:65px;
+
+      pointer-events: auto;
+      
+    }
+    .sky #js-leave-trigger {
+      right:5px;
+
+      pointer-events: auto;
+    }
+    
+    .sky .messages {
+      position:absolute;
+      left: 100%;
+      bottom:0;
+      height: 50px;
+      overflow   : auto;
+      color: lightgray;
+    }
+
+    .sky video{
+      width: 0;
+      height: 0;
+    }
+/* -- ここまでskyway--------------------------------------------- - */
+
   </style>
 </head>
 
@@ -471,6 +541,17 @@
       <div class="player" id="pl02">PLAYER 2</div>
       <p class='n_txt'>NAME</p>
       <input type="text" id="name">
+<!-- ここからskyway--------------------------------------------- -->
+      <div class="sky">
+        <video id="js-local-stream"></video>
+        <span id="js-room-mode"><p>VOICE_CHAT</p></span>
+        <input type="text" placeholder="Room Name" id="js-room-id">
+        <button id="js-join-trigger">Join</button>
+        <button id="js-leave-trigger">Leave</button>
+        <div class="remote-streams" id="js-remote-streams"></div>
+        <pre class="messages" id="js-messages"></pre>
+      </div>
+<!-- ここまでskyway--------------------------------------------- -->
     </div>
     <p id="kome"></p>
     <div class="gallery" id="pl03">AUDIENCE</div>
@@ -573,6 +654,9 @@
 
 
     </script>
+<!-- skyway -------------------------------------------------------- -->
+    <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.1.js"></script>
+<!-- skyway -------------------------------------------------------- -->
     <script src="js/ball_mod.js"></script>
     
   <footer></footer>

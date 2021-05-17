@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SkyWay - Room example</title>
+    <!-- <link rel="stylesheet" href="../_shared/style.css"> -->
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Room example</h1>
+        <p class="note">
+            Change Room mode (before join in a room):
+            <a href="#">mesh</a> / <a href="#sfu">sfu</a>
+        </p>
+        <div class="room">
+            <div>
+                <video id="js-local-stream"></video>
+                <span id="js-room-mode"></span>:
+                <input type="text" placeholder="Room Name" id="js-room-id">
+                <button id="js-join-trigger">Join</button>
+                <button id="js-leave-trigger">Leave</button>
+            </div>
+
+            <div class="remote-streams" id="js-remote-streams"></div>
+
+            <div>
+                <pre class="messages" id="js-messages"></pre>
+                <input type="text" id="js-local-text">
+                <button id="js-send-trigger">Send</button>
+            </div>
+        </div>
+        <p class="meta" id="js-meta"></p>
+    </div>
+    <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.1.js"></script>
+    <!-- <script src="../_shared/key.js"></script> -->
+    <script>
+        const Peer = window.Peer;
+
+            (async function main() {
+                const localVideo = document.getElementById('js-local-stream');
+                const joinTrigger = document.getElementById('js-join-trigger');
+                const leaveTrigger = document.getElementById('js-leave-trigger');
+                const remoteVideos = document.getElementById('js-remote-streams');
+                const roomId = document.getElementById('js-room-id');
+                const roomMode = document.getElementById('js-room-mode');
+                const localText = document.getElementById('js-local-text');
+                const sendTrigger = document.getElementById('js-send-trigger');
+                const messages = document.getElementById('js-messages');
+                const meta = document.getElementById('js-meta');
+                const sdkSrc = document.querySelector('script[src*=skyway]');
+
+                // #js-meta(一番下)にPC情報を記載
+                meta.innerText = `
+                    UA: ${navigator.userAgent}
+                    SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
+                `.trim();
+
+                // SFUかmeshを選択 PLAYER2とPLYER1はmeshでもいいけど、基本はsfu
+                const getRoomModeByHash = () => (location.hash === '#sfu' ? 'sfu' : 'mesh');
+
+                // #js-room-mode(spanのところ)を上で選択したやつを表示して、ハッシュも変える。sfu
+                roomMode.textContent = getRoomModeByHash();
+                window.addEventListener(
+                    'hashchange',
+                    () => (roomMode.textContent = getRoomModeByHash())
+                );
+
+                //自分のビデオ領域 promiseの結果が帰ってきてから実行
+                //ビデオ、オーディオの選択もここ
+                const localStream = await navigator.mediaDevices
+                    .getUserMedia({
+                        audio: true,
+                        video: false,
+                    })
+                    .catch(console.error);
+
+                // Render local stream
+                localVideo.muted = true;
+                localVideo.srcObject = localStream;
+                localVideo.playsInline = false;
+                await localVideo.play().catch(console.error);
+
+                // eslint-disable-next-line require-atomic-updates
+                // keyの登録はこちら！！
+                const peer = (window.peer = new Peer({
+                    key: '7fb74053-4689-485c-900e-6ceb33be1b56',
+                    debug: 3,
+                }));
+
+                // Register join handler
+                // Joinボタンのクリックイベント peerをオープン
+                joinTrigger.addEventListener('click', () => {
+                    // Note that you need to ensure the peer has connected to signaling server
+                    // before using methods of peer instance.
+                    if (!peer.open) {
+                        return;
+                    }
+
+                    // meshまたはsfuのルームに参加する(JoinRoom関数) roomIdはinputで入力した値、
+                    // mode:mesh or sfu, stream:ユーザーが送信するメディアストリーム
+                    const room = peer.joinRoom(roomId.value, {
+                        mode: getRoomModeByHash(),
+                        stream: localStream,
+                        // audioReceiveEnabled.true audioを受信のみで使う（メッシュのみだから今回は不可）
+                    });
+
+                    //peer.JoinRoomで指定した部屋へ新規に入室(open) ⇦の部屋に新しいpeerが参加するときはpeerJoinが発生
+                    // #js-messageにテキスト追加 (textcontentなので、タグ入れても一緒に表示されるだけ)
+                    room.once('open', () => {
+                        messages.textContent += '=== You joined ===\n';
+                    });
+                    room.on('peerJoin', peerId => {
+                        messages.textContent += `=== ${peerId} joined ===\n`;
+                    });
+
+                    // Render remote stream for new peer join in the room
+                    // 'stream'はMediaStream を受信したときに発生
+                    // stream.peerIdはストリーム送信元のpeerID
+                    // videoはappendでどんどん追加されていく（追加されないように改造必要 video: falseだけでいけるのか・・・？）
+                    room.on('stream', async stream => {
+                        const newVideo = document.createElement('video');
+                        newVideo.srcObject = stream;
+                        newVideo.playsInline = true;
+                        // mark peerId to find it later at peerLeave event
+                        newVideo.setAttribute('data-peer-id', stream.peerId);
+                        remoteVideos.append(newVideo);
+                        await newVideo.play().catch(console.error);
+                    });
+
+                    //  'data'は接続先のpeerからデータを受信したら発生。 peeridとチャット内容をメッセージ部分に表示
+                    room.on('data', ({ data, src }) => {
+                        // Show a message sent to the room and who sent
+                        messages.textContent += `${src}: ${data}\n`;
+                    });
+
+                    // for closing room members
+                    // 'peerLeave'はpeerがルームを退出した時に発生
+                    // 退出したpeerのidのvideoを除去(128行目でnewVideo.setAttribute('data-peer-id', stream.peerId);で設置したやつ)
+                    room.on('peerLeave', peerId => {
+                        const remoteVideo = remoteVideos.querySelector(
+                            `[data-peer-id="${peerId}"]`
+                        );
+                        remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+                        remoteVideo.srcObject = null;
+                        remoteVideo.remove();
+
+                        messages.textContent += `=== ${peerId} left ===\n`;
+                    });
+
+                    // for closing myself
+                    room.once('close', () => {
+                        sendTrigger.removeEventListener('click', onClickSend);
+                        messages.textContent += '== You left ===\n';
+                        Array.from(remoteVideos.children).forEach(remoteVideo => {
+                            remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+                            remoteVideo.srcObject = null;
+                            remoteVideo.remove();
+                        });
+                    });
+
+                    sendTrigger.addEventListener('click', onClickSend);
+                    leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+
+                    function onClickSend() {
+                        // Send message to all of the peers in the room via websocket
+                        room.send(localText.value);
+
+                        messages.textContent += `${peer.id}: ${localText.value}\n`;
+                        localText.value = '';
+                    }
+                });
+
+                peer.on('error', console.error);
+            })();
+    </script>
+</body>
+
+</html>
+
+<!-- 7fb74053-4689-485c-900e-6ceb33be1b56 -->

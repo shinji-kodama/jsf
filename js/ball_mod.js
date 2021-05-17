@@ -61,6 +61,9 @@ let url_value   = query.split('='); // query内のデータを分ける
 let user_name   = url_value[1].split('?')[0]; // url内のname
 let SVR         = url_value[2];               // urk内のserver名
 let yplay       = 0;                          // ページ表示時のプレイヤー区分
+let audioTrack = stream.getAudioTracks()[0];  // マイクをミュートにする
+audioTrack.enebled = false;
+
 document.getElementById('name').value = user_name;
 load_states();
 function initial_prop(self) { //背景色、shapegroup宣言
@@ -1528,6 +1531,7 @@ $('#pl01, #pl02, #pl03').on('click', function () {
     if (b_pushed <= 2) {
         const o1 = 3 - b_pushed;
         const o2 = 3;
+        audioTrack.enebled = true;
         push_player_button(b_pushed, o1, o2);
     } else {
         const o1 = 1;
@@ -1633,3 +1637,101 @@ $(window).on('beforeunload', function () {
     }
     player_set_prop(3, name, dt, 'out')  
 });
+
+
+// ここから下はskywayの記述------------------------------------------------------------------------------------------
+
+const Peer = window.Peer;
+(async function main() {
+    const localVideo = document.getElementById('js-local-stream');
+    const joinTrigger = document.getElementById('js-join-trigger');
+    const leaveTrigger = document.getElementById('js-leave-trigger');
+    const remoteVideos = document.getElementById('js-remote-streams');
+    const roomId = document.getElementById('js-room-id');
+    const roomMode = document.getElementById('js-room-mode');
+    const messages = document.getElementById('js-messages');
+    
+    const getRoomModeByHash = () => (location.hash === '#sfu' ? 'sfu' : 'sfu');
+
+    // roomMode.textContent = getRoomModeByHash();
+    window.addEventListener(
+        'hashchange',
+        () => (roomMode.textContent = getRoomModeByHash())
+    );
+
+    const localStream = await navigator.mediaDevices
+        .getUserMedia({
+            audio: true,
+            video: false,
+        }).catch(console.error);
+
+    localVideo.muted = true;
+    localVideo.srcObject = localStream;
+    localVideo.playsInline = false;
+    await localVideo.play().catch(console.error);
+
+    const peer = (window.peer = new Peer({
+        key: '7fb74053-4689-485c-900e-6ceb33be1b56',
+        debug: 3,
+    }));
+
+
+    joinTrigger.addEventListener('click', () => {
+        firebase.database().ref(SVR + '/sky').set(roomId.value);
+        if (!peer.open) {
+            return;
+        }
+        const room = peer.joinRoom(roomId.value, {
+            mode: getRoomModeByHash(),
+            stream: localStream,
+        });
+        room.once('open', () => {
+            messages.textContent = '=== You joined ===\n' + messages.textContent;
+        });
+        room.on('peerJoin', peerId => {
+            messages.textContent = `=== ${peerId} joined ===\n` + messages.textContent;
+        });
+        room.on('stream', async stream => {
+            const newVideo = document.createElement('video');
+            newVideo.srcObject = stream;
+            newVideo.playsInline = true;
+            // mark peerId to find it later at peerLeave event
+            newVideo.setAttribute('data-peer-id', stream.peerId);
+            remoteVideos.append(newVideo);
+            await newVideo.play().catch(console.error);
+        });
+        room.on('data', ({ data, src }) => {
+            // Show a message sent to the room and who sent
+            messages.textContent += `${src}: ${data}\n`;
+        });
+        room.on('peerLeave', peerId => {
+            const remoteVideo = remoteVideos.querySelector(
+                `[data-peer-id="${peerId}"]`
+            );
+            remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+            remoteVideo.srcObject = null;
+            remoteVideo.remove();
+
+            messages.textContent = `=== ${peerId} left ===\n` + messages.textContent;
+        });
+        room.once('close', () => {
+            messages.textContent = '== You left ===\n' + messages.textContent;
+            Array.from(remoteVideos.children).forEach(remoteVideo => {
+                remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+                remoteVideo.srcObject = null;
+                remoteVideo.remove();
+            });
+        });
+        leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+    });
+
+    peer.on('error', console.error);
+})();
+
+firebase.database().ref(SVR+'/sky').on('value', function(data){
+    const v = data.val();
+    document.getElementById('js-room-id').value = v;
+})
+
+
+// ここから上はskywayの記述------------------------------------------------------------------------------------------

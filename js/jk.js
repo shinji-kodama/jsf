@@ -173,7 +173,7 @@ $('#item02').on('click',function(){
         mHP += cure;
 
         $('#my_hp').html(mHP)
-        $('#my_damage').html('50').css('color', 'green');
+        $('#my_damage').html('<p>50</p>').css('color', 'green');
         $('#pc_damege').html('')
 
         d_Message();
@@ -198,7 +198,7 @@ $('#item03').on('click',function(){
         pegasus = 0;
         $('#pc_hp').html(pHP);
         
-        $('#pc_damage').html(30);
+        $('#pc_damage').html('<p>30</p>');
 
         d_Message();
         $('#message01').html('道中 捕まえた ハネウマ の 攻撃！');
@@ -232,8 +232,8 @@ $('#my_attack').on('click', function(){
         $('#message02').html(my_dam + ' のダメージを受けた');
         $('#message03').html('ド○キーコングに' + pc_dam + ' のダメージを与えた！');
 
-        $('#my_damage').html(my_dam).css('color', 'red');
-        $('#pc_damage').html(pc_dam);
+        $('#my_damage').html('<p>'+my_dam+'</p>').css('color', 'red');
+        $('#pc_damage').html('<p>'+pc_dam+'</p>');
     }else if(pc_act == 1){
         let music = new Audio('./bgm/miss.mp3');
         music.play();
@@ -269,8 +269,8 @@ $('#my_attack').on('click', function(){
         $('#message03').html('ド○キーコング は 思い切り 腕 を ぶん回した！');
         $('#message04').html(my_dam + ' のダメージを受けた！')
 
-        $('#my_damage').html(my_dam).css('color', 'red');
-        $('#pc_damage').html(pc_dam);
+        $('#my_damage').html('<p>'+my_dam+'</p>').css('color', 'red');
+        $('#pc_damage').html('<p>' + pc_dam + '</p>');
     }else {
         let music = new Audio('./bgm/zan.mp3');
         music.play();
@@ -290,7 +290,7 @@ $('#my_attack').on('click', function(){
         $('#message03').html('ド○キーコング は カウンター に 失敗した！');
 
         $('#my_damage').html('');
-        $('#pc_damage').html(pc_dam);
+        $('#pc_damage').html('<p>' + pc_dam + '</p>');
     }
     if (my_tame_A >= 2) {
         $('#my_str_attack').html('<img src="img02/sword3.png">')
@@ -341,7 +341,7 @@ $('#my_guard').on('click', function () {
         $('#message02').html('防御している');
         $('#message03').html(my_dam + ' のダメージを受けた');
 
-        $('#my_damage').html(my_dam).css('color', 'red');
+        $('#my_damage').html('<p>' + my_dam + '</p>').css('color', 'red');
         $('#pc_damage').html('');
     }else{
         let music = new Audio('./bgm/no.mp3');
@@ -385,8 +385,8 @@ $('#my_str_attack').on('click',function(){
             $('#message03').html('ド○キーコング の 攻撃');
             $('#message04').html(my_dam + ' のダメージを受けた！')
 
-            $('#my_damage').html(my_dam).css('color', 'red');
-            $('#pc_damage').html(pc_dam);
+            $('#my_damage').html('<p>' + my_dam + '</p>').css('color', 'red');
+            $('#pc_damage').html('<p>' + pc_dam + '</p>');
         } else if (pc_act == 1) {
             let music = new Audio('./bgm/zan2.mp3');
             music.play();
@@ -405,7 +405,7 @@ $('#my_str_attack').on('click',function(){
             $('#message03').html('ド○キーコング に' + pc_dam + ' の ダメージ を 与えた！');
 
             $('#my_damage').html('');
-            $('#pc_damage').html(pc_dam);
+            $('#pc_damage').html('<p>' + pc_dam + '</p>');
         } else if(pc_act == 2) {
             let music = new Audio('./bgm/aiko.mp3');
             music.play();
@@ -424,8 +424,8 @@ $('#my_str_attack').on('click',function(){
             $('#message03').html('両者 の 攻撃 が 鬩ぎ合う！');
             $('#message04').html('あなた は' + my_dam + ' , ド○キーコング は' + pc_dam + ' の ダメージ を 受けた！')
 
-            $('#my_damage').html(my_dam).css('color', 'red');
-            $('#pc_damage').html(pc_dam);
+            $('#my_damage').html('<p>' + my_dam + '</p>').css('color', 'red');
+            $('#pc_damage').html('<p>' + pc_dam + '</p>');
         } else {
             let music = new Audio('./bgm/panch.mp3');
             music.play();
@@ -442,7 +442,7 @@ $('#my_str_attack').on('click',function(){
             $('#message03').html('あなた は ' + my_dam + ' の ダメージ を 受けた！');
 
             $('#my_damage').html('');
-            $('#pc_damage').html(pc_dam);
+            $('#pc_damage').html('<p>' + pc_dam + '</p>');
         }
     }
     if(my_tame_A <2){
@@ -472,7 +472,7 @@ $('#my_counter').on('click', function () {
             $('#message02').html('カウンター 失敗');
             $('#message03').html(my_dam + ' のダメージ を 受けた！');
 
-            $('#my_damage').html(my_dam).css('color', 'red');
+            $('#my_damage').html('<p>' + my_dam + '</p>').css('color', 'red');
             $('#pc_damage').html('');
         } else if (pc_act == 1) {
             let music = new Audio('./bgm/no.mp3');
@@ -505,7 +505,7 @@ $('#my_counter').on('click', function () {
             $('#message03').html('ド○キーコングに' + pc_dam + ' のダメージを与えた');
 
             $('#my_damage').html('');
-            $('#pc_damage').html(pc_dam);
+            $('#pc_damage').html('<p>' + pc_dam + '</p>');
         } else {
             let music = new Audio('./bgm/no.mp3');
             music.play();
