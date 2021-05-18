@@ -30,17 +30,17 @@ var ASSETS = {
         'jump': './bgm/jump.wav',
         'goal': './bgm/win.mp3',
         'damage': './bgm/damage.mp3',
-        'gameover' : './bgm/gameover.wav',
+        'gameover': './bgm/gameover.wav',
         'encount': './bgm/encount.mp3',
         'kabe': './bgm/kabe.wav',
         'item': './bgm/item.mp3',
 
     },
 
-    
-        
 
-    
+
+
+
 };
 
 // 定数
@@ -86,12 +86,10 @@ var medicine = 0;       //回復薬拾ったフラグ
 var goalflg = 0;        //ゴールしたかどうか判定
 
 let query = location.search;  // index.htmlから持ち越したurlデータを読み取り
-let url_value //= query.split('='); // query内のデータを分ける 
-let user_name = 'default'; //url_value[1].split('?')[0]; // url内のname
-let SVR = 'donkey'; //url_value[2];               // urk内のserver名
+let url_value = query.split('='); // query内のデータを分ける 
+let user_name = url_value[1].split('?')[0]; // url内のname
+let SVR = url_value[2];               // urk内のserver名
 let yplay = 0;                          // ページ表示時のプレイヤー区分
-let audioTrack = stream.getAudioTracks()[0];  // マイクをミュートにする
-audioTrack.enebled = false;
 
 document.getElementById('name').value = user_name;
 
@@ -222,7 +220,9 @@ function send_chat() {          // チャット機能
         pheight: pheight
     }
     firebase.database().ref(room).push(msg);
-    document.getElementById('txt').value = null;
+    setTimeout(() => {
+        document.getElementById('txt').value = null;
+    }, 500);
 }
 function stagechange(st) {      // hostの表示画面を共有する
     if (yplay == 1) {
@@ -236,7 +236,7 @@ function stagedouki(self) {     // audienceの画面をhostの画面と同じに
     let stage
     firebase.database().ref(SVR + room).on('value', function (data) {
         const v = data.val();
-        
+
         scene = v;
         if (yplay != 1) {
             if (scene != 0) {
@@ -273,10 +273,10 @@ phina.define("MainScene", {
         // thisを退避
         var self = this;
 
-        (NUM).times(function(){
+        (NUM).times(function () {
             var shape = Shape({
-                x: Random.randint(SHAPE_HALF+50, SCREEN_WIDTH - SHAPE_HALF),
-                y: Random.randint(SHAPE_TOP, SCREEN_HEIGHT - SHAPE_HEIGHT - GROUND_HEIGHT-10),
+                x: Random.randint(SHAPE_HALF + 50, SCREEN_WIDTH - SHAPE_HALF),
+                y: Random.randint(SHAPE_TOP, SCREEN_HEIGHT - SHAPE_HEIGHT - GROUND_HEIGHT - 10),
                 width: Random.randint(SHAPE_WIDTH / 4, SHAPE_WIDTH),
                 height: SHAPE_HEIGHT,
                 fill: 'white', padding: 0, backgroundColor: 'black',
@@ -284,7 +284,7 @@ phina.define("MainScene", {
             var hue = Random.randint(0, 360);
             shape.backgroundColor = 'hsl({0}, 75%, 50%)'.format(hue);
             shape.alpha = 0.6
-            if(hue >= 0 && hue <= 120){
+            if (hue >= 0 && hue <= 120) {
                 Draggable().attachTo(shape);
             }
         });
@@ -296,13 +296,13 @@ phina.define("MainScene", {
             x: 500, y: 100, width: 200, height: 1
         }).addChildTo(this.shapeGroup);
         shapeB.backgroundColor = 'black';
-        
+
         // 繰り返し(地面配置)
         (10).times(function (i) {
             Ground().addChildTo(self.shapeGroup).setPosition(grid.span(i), grid.span(9));
         });
 
-        
+
         this.ken = Ken().addChildTo(this).setPosition(this.gridX.span(Random.randint(12, 15)), this.gridY.span(Random.randint(8, 12)));
         this.kusuri = Kusuri().addChildTo(this).setPosition(this.gridX.span(Random.randint(1, 5)), this.gridY.span(Random.randint(1, 2)));
 
@@ -329,7 +329,7 @@ phina.define("MainScene", {
         p1watch(this, 'main')
     },
     // 更新処理
-    update: function(app){
+    update: function (app) {
         // 0ブロック上にジャンプした時の挙動
         // console.log(this.collisionY())
         var player = this.player;
@@ -341,7 +341,7 @@ phina.define("MainScene", {
             // ブロックの上
             case 'ON_BLOCK':
                 // タッチ開始
-                
+
                 if (key.getKey('up')) {
                     player.physical.velocity.y = -JUMP_POWER;
                     player.state = 'JUMPING';
@@ -374,7 +374,7 @@ phina.define("MainScene", {
 
         var enemys = this.enemyGroup.children;
         // 一定フレーム経過したら
-        if(app.frame % ENEMY_INTERVAL === 0 && enemys.length < ENEMY_MAX_NUM){
+        if (app.frame % ENEMY_INTERVAL === 0 && enemys.length < ENEMY_MAX_NUM) {
             // 敵生成
             this.generateEnemy();
         }
@@ -382,14 +382,14 @@ phina.define("MainScene", {
         this.hitTestEnemyPlayer();
 
         this.hitTestBossPlayer();
-        
+
         this.getItem();
     },
 
     collisionY: function () {
         var player = this.player;
         // 床に乗っている場合は強引に当たり判定を作る
-        var vy = player.physical.velocity.y === 0 ? 4: player.physical.velocity.y;
+        var vy = player.physical.velocity.y === 0 ? 4 : player.physical.velocity.y;
         // 当たり判定用の矩形
         var rect = Rect(player.left, player.top + vy, player.width, player.height);
         var result = false;
@@ -400,7 +400,7 @@ phina.define("MainScene", {
             // ブロックとのあたり判定
             if (Collision.testRectRect(rect, block)) {
                 // 移動量
-                if(player.physical.velocity.y >= 10){
+                if (player.physical.velocity.y >= 10) {
                     AssetManager.get('sound', 'damage').play();
                     count += 1;
                     if (count == 20) {
@@ -426,14 +426,14 @@ phina.define("MainScene", {
         if (!true) player.state = 'FALLING';
     },
 
-    modeSet: function(){
-        if(MODE==0){    //NORMAL
+    modeSet: function () {
+        if (MODE == 0) {    //NORMAL
             ENEMY_MAX_NUM = 10;   // 敵生成の最大数
             ENEMY_INTERVAL = 60; // 敵を生成する間隔
             NUM = 15;
             SHAPE_TOP = 200;
         }
-        if(MODE==1){    //HARD
+        if (MODE == 1) {    //HARD
             ENEMY_MAX_NUM = 100;   // 敵生成の最大数
             ENEMY_INTERVAL = 10; // 敵を生成する間隔
             NUM = 10;
@@ -445,7 +445,7 @@ phina.define("MainScene", {
             NUM = 25;
             SHAPE_TOP = 50;
         }
-        
+
     },
     // // タッチ時処理
     // onpointstart: function(){
@@ -463,10 +463,10 @@ phina.define("MainScene", {
     //             console.log('HOT!');
     //             player.physical.velocity.x = 0;
     //         }
-            
+
     //     });
     // },
-    
+
     // 敵とプレイヤーの当たり判定処理
     hitTestEnemyPlayer: function () {
         var player = this.player;
@@ -481,7 +481,7 @@ phina.define("MainScene", {
                 // console.log('hit!');
                 count = count + 1;
                 peg = peg + 1;
-                
+
                 player.physical.velocity.x = 0;
                 player.physical.velocity.y = 0;
 
@@ -490,7 +490,7 @@ phina.define("MainScene", {
                 enemy.remove();
                 console.log(count);
 
-                if (count == 20){
+                if (count == 20) {
                     SoundManager.stopMusic();
                     AssetManager.get('sound', 'gameover').play();
                     player.anim.gotoAndPlay('die');
@@ -506,13 +506,13 @@ phina.define("MainScene", {
         var boss = this.boss;
         var self = this;
         // 敵をループ
-            // 判定用の円
+        // 判定用の円
         var c1 = Circle(player.x, player.y, HIT_RADIUS);
         var c2 = Circle(boss.x, boss.y, HIT_RADIUS);
-            // 円判定
+        // 円判定
         if (Collision.testCircleCircle(c1, c2)) {
-                // console.log('hit!');
-                // count = count + 1;
+            // console.log('hit!');
+            // count = count + 1;
 
             player.physical.velocity.x = 0;
             player.physical.velocity.y = 0;
@@ -523,12 +523,12 @@ phina.define("MainScene", {
 
             SoundManager.stopMusic();
             AssetManager.get('sound', 'encount').play();
-                // enemy.remove();
+            // enemy.remove();
             // alert('clear! 接触回数 = ' + count + '回！');
             this.donki();
         }
     },
-    
+
     getItem: function () {
         var player = this.player;
         var ken = this.ken;
@@ -541,7 +541,7 @@ phina.define("MainScene", {
 
         // 円判定
         if (Collision.testCircleCircle(c1, c2)) {
-            if(sword == 0){
+            if (sword == 0) {
                 // console.log('hit!');
                 sword = 1;
                 AssetManager.get('sound', 'item').play();
@@ -558,40 +558,40 @@ phina.define("MainScene", {
         }
     },
     // 敵生成処理
-    generateEnemy: function(){
+    generateEnemy: function () {
         // 位置をランダムに
-        var x = this.gridX.span(Random.randint(1,16));
-        var y = this.gridY.span(Random.randint(3,5));
+        var x = this.gridX.span(Random.randint(1, 16));
+        var y = this.gridY.span(Random.randint(3, 5));
         // グループに追加 
-        Enemy().addChildTo(this.enemyGroup).setPosition(x,y);
+        Enemy().addChildTo(this.enemyGroup).setPosition(x, y);
     },
-    
+
     // エンカウント
 
 
-    donki: function(){
+    donki: function () {
         var shapeC = Shape().addChildTo(this);
 
         shapeC.setPosition(this.gridX.center(), this.gridY.center());
         shapeC.backgroundColor = 'black';
         shapeC.tweener.to({
-            scaleX:20, scaleY: 20, rotation: 720
+            scaleX: 20, scaleY: 20, rotation: 720
         }, 2000).play();
         goalflg = 1;
         setTimeout(() => {
             const u = './jk.html?hit=' + count + '?sword=' + sword + '?medicine=' + medicine + '?peg=' + peg;
-            $('#jk').css('pointer-events','auto')
-            $('#jk').html('<iframe id="inlineFrameExample" title = "Inline Frame Example" width = "800" height = "800" src = "'+u+'"></iframe >')
+            $('#jk').css('pointer-events', 'auto')
+            $('#jk').html('<iframe id="inlineFrameExample" title = "Inline Frame Example" width = "800" height = "800" src = "' + u + '"></iframe >')
         }, 2000);
 
     },
 
     onpointstart: function () {
-        if(goalflg == 1){
+        if (goalflg == 1) {
             this.exit();
         }
     },
-    
+
 });
 phina.define("Ken", {
     // 継承
@@ -624,11 +624,11 @@ phina.define("Ground", {
         this.origin.set(0, 0);
     },
 });
-phina.define('Player',{
+phina.define('Player', {
     // 継承
     superClass: 'Sprite',
     // コンストラクタ
-    init: function() {
+    init: function () {
         // 親クラス初期化
         this.superInit('sman', PLAYER_SIZE_X, PLAYER_SIZE_Y);
         // スプライト
@@ -650,7 +650,8 @@ phina.define('Player',{
             this.scaleX = 1;
             this.physical.velocity.x -= PLAYER_SPEED;
             if (this.anim.ss.getAnimation('left') !== this.anim.currentAnimation) {
-                this.anim.gotoAndPlay('left');            }
+                this.anim.gotoAndPlay('left');
+            }
         }
 
         if (key.getKey('right')) {
@@ -667,8 +668,8 @@ phina.define('Player',{
         //     this.physical.gravity.y = GRAVITY;
 
         // }
-        
-    
+
+
 
         if (this.left < 0) {
             // 位置補正
@@ -686,7 +687,7 @@ phina.define('Player',{
 
         if (this.bottom > y + 5) {
             // 反射
-            this.bottom = y+5;
+            this.bottom = y + 5;
             this.physical.velocity.y = -0.5;
         }
     },
@@ -696,7 +697,7 @@ phina.define('Player',{
     },
 
     // 反転処理
-    reflectX: function(){
+    reflectX: function () {
         // 移動方向反転
         this.physical.velocity.x *= -1;
         // 向き反転
@@ -705,19 +706,19 @@ phina.define('Player',{
         AssetManager.get('sound', 'kabe').play();
     },
 });
-phina.define('Boss',{
+phina.define('Boss', {
     superClass: 'Sprite',
-    init: function(){
+    init: function () {
         this.superInit('donkey', BOSS_SIZE_X, BOSS_SIZE_Y);
         this.anim = FrameAnimation('donkey_ss').attachTo(this);
         this.anim.fit = false;
         this.anim.gotoAndPlay('stand');
-        
+
     }
 })
-phina.define('Enemy',{
+phina.define('Enemy', {
     superClass: 'Sprite',
-    init: function(){
+    init: function () {
         this.superInit('pegasus', ENEMY_SIZE_X, ENEMY_SIZE_Y);
         FrameAnimation('pegasus_ss').attachTo(this).gotoAndPlay('fly');
         // 移動方向をランダムに決める
@@ -730,7 +731,7 @@ phina.define('Enemy',{
         this.physical.gravity.y = E_GRAVITY;
     },
     //更新処理
-    update: function(){
+    update: function () {
         if (this.left < 0) {
             this.left = 0;
             this.reflectX();
@@ -742,17 +743,17 @@ phina.define('Enemy',{
         //　地面ライン
         var y = SCREEN_HEIGHT - GROUND_HEIGHT;
         // 地面
-        if (this.bottom > y){
+        if (this.bottom > y) {
             // 反射
             this.bottom = y;
             if (this.physical.velocity.y < 8) {
                 this.physical.velocity.y = 14;
             }
-                this.physical.velocity.y *= -0.95;
-            
+            this.physical.velocity.y *= -0.95;
+
         }
     },
-    
+
     reflectX: function () {
         // 移動方向反転
         this.physical.velocity.x *= -1;
@@ -760,9 +761,9 @@ phina.define('Enemy',{
         this.scaleX *= -1;
     },
 });
-phina.define('Scene01',{
+phina.define('Scene01', {
     superClass: 'DisplayScene',
-    init: function(){
+    init: function () {
         this.superInit({
             width: SCREEN_WIDTH,
             height: SCREEN_HEIGHT,
@@ -785,7 +786,7 @@ phina.define('Scene01',{
 
     update: function (app) {
         var key = app.keyboard;
-        if(yplay==1){
+        if (yplay == 1) {
             if (key.getKey('up')) {
                 MODE = 1;
                 this.exit();
@@ -797,14 +798,14 @@ phina.define('Scene01',{
         }
     },
 
-    onpointstart: function(){
-        if(yplay == 1){
+    onpointstart: function () {
+        if (yplay == 1) {
             MODE = 0;
             this.exit();
         }
     }
 
-    
+
 
 });
 phina.define('Scene02', {
@@ -898,7 +899,6 @@ $('#pl01, #pl02, #pl03').on('click', function () {
     if (b_pushed <= 2) {
         const o1 = 3 - b_pushed;
         const o2 = 3;
-        audioTrack.enebled = true;
         push_player_button(b_pushed, o1, o2);
     } else {
         const o1 = 1;
@@ -1099,3 +1099,61 @@ firebase.database().ref(SVR + '/sky').on('value', function (data) {
 })
 
 // ここから上はskywayの記述------------------------------------------------------------------------------------------
+// ここから下はtalk api -----------------------------------------
+
+window.addEventListener('DOMContentLoaded', () => {
+    //- イベントリスナー登録
+    document.getElementById('send').addEventListener('click', handler_request_reply);
+    document.getElementById('txt').addEventListener('keydown', handler_request_reply);
+});
+
+/*---------------------------------------*/
+/* 返答をリクエスト */
+/*---------------------------------------*/
+function handler_request_reply(e) {
+    if (e.keyCode == 13 || e.type == 'click') {
+        const comment = document.getElementById('txt').value;
+        let formdata = new FormData();
+        formdata.append('apikey', 'DZZPsXrgg3PWJ3QW3jcSXBLERtvKz7D4');
+        //- コメント
+        formdata.append('query', comment);
+        fetch('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk', {
+            method: 'post',
+            body: formdata,
+        }).then(response => {
+            //- レスポンス取得
+            response.json().then(data => {
+                //- 返答取得
+
+                const reply = data.results[0].reply;
+                //- firebaseにpush(特定の場所に入れられると、自動でchatに表示される)
+
+                const uname = '賑やかしBOT'
+                const D = new Date();
+                const dt = D.getMonth() + '/' + D.getDate() + ', ' + D.getHours() + ':' + D.getMinutes();
+                const room = SVR + '/chatroom';
+                const fsize = Math.floor(Math.random() * 10 + 25);
+                const fcolor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                const fstyle = 'italic';
+                const fweight = '400';
+                const ffamily = 'sans-serif';
+                const pheight = 'random';
+                const msg = {
+                    uname: uname, // right : const uname
+                    text: reply,
+                    date: dt,
+                    fsize: fsize,
+                    fcolor: fcolor,
+                    fstyle: fstyle,
+                    fweight: fweight,
+                    ffamily: ffamily,
+                    pheight: pheight
+                }
+                setTimeout(() => {
+                    firebase.database().ref(room).push(msg);
+                }, 1000);
+            });
+        });
+    }
+
+}

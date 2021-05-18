@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="talkapi__input" type="input" placeholder="ここにテキストを入力" />
+    <button id="talkapi__request" type="button">リクエスト</button>
+    <p id="talkapi__reply"></p>
+<script>
+/*---------------------------------------*/
+/* HTML(だけ)の読み込みが完了したら */
+/*---------------------------------------*/
+window.addEventListener('DOMContentLoaded',()=>{
+    //- イベントリスナー登録
+    document.getElementById('talkapi__request').addEventListener('click',handler_request_reply);
+});
+
+/*---------------------------------------*/
+/* 返答をリクエスト */
+/*---------------------------------------*/
+function handler_request_reply(ev){
+    /*---------------------------------------*/
+    /* コメント取得 */
+    /*---------------------------------------*/
+    const comment = document.getElementById('talkapi__input').value;
+
+    /*---------------------------------------*/
+    /* レクエストデータ */
+    /*---------------------------------------*/
+    let formdata = new FormData();
+    //- apikeyパラメーター 
+    formdata.append('apikey','DZZPsXrgg3PWJ3QW3jcSXBLERtvKz7D4');
+    //- コメント
+    formdata.append('query',comment);
+
+    /*---------------------------------------*/
+    /* リクエスト */
+    /*---------------------------------------*/
+    fetch('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk',{
+        method: 'post',
+        body: formdata,
+    }).then(response => {
+        //- レスポンス取得
+        response.json().then(data => {
+            //- 返答取得
+            const reply = data.results[0].reply;
+            //- 出力
+            document.getElementById('talkapi__reply').innerHTML = reply;
+        });
+    });
+
+}
+</script>
+</body>
+</html>
