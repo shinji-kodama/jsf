@@ -464,7 +464,9 @@ function send_chat() {          // チャット機能
         pheight: pheight
     }
     firebase.database().ref(room).push(msg);
-    document.getElementById('txt').value = null;
+    setTimeout(() => {
+        document.getElementById('txt').value = null;
+    }, 1000);
 }
 function stagechange(st) {      // hostの表示画面を共有する
     if (yplay == 1) {
@@ -1557,7 +1559,6 @@ firebase.database().ref(SVR + '/player02').on('value', function (data) {
     const h = '<p>' + v + ', ' + t + '</p>';
     csl_ind(2, v, h);
 });
-// chatの箱に表示
 firebase.database().ref(SVR + '/chatroom').on('child_added', function (data) {
     const v = data.val();
     const txt = escapeHTML(v.text);
@@ -1622,7 +1623,6 @@ firebase.database().ref(SVR + '/player03').on('child_added', function (data) {
         messagesArea.scrollTop = messagesArea.scrollHeight;
     }
 });
-
 $(window).on('beforeunload', function () {
     const arr = name_date();
     const name = arr[0];
