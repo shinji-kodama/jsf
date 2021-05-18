@@ -1683,6 +1683,12 @@ const Peer = window.Peer;
             mode: getRoomModeByHash(),
             stream: localStream,
         });
+        const audioTrack = localStream.getAudioTracks()[0];
+        if(yplay == 1 || yplay ==2){
+            audioTrack.enabled = true;
+        }else{
+            audioTrack.enabled = false;
+        }
         room.once('open', () => {
             messages.textContent = '=== You joined ===\n' + messages.textContent;
         });
