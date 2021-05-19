@@ -237,16 +237,30 @@ db_ban.on('value', function (data) { // 盤面の制御
     hantei4_dia(v);
     hantei4_dib(v);
 
-    if(count_0 == 16){
-        hantei3_row(v);
-        hantei3_col(v);
-        hantei3_dia(v);
-        hantei3_dig(v);
-
+    if(count_0 == 0){
+        let line3_1 = 0;
+        let line3_2 = 0;
+        const arr_row = hantei3_row(v);
+        const arr_col = hantei3_col(v);
+        const arr_dia = hantei3_dia(v);
+        const arr_dib = hantei3_dib(v);
+        line3_1 = arr_row[0] + arr_col[0] + arr_dia[0] + arr_dib[0];
+        line3_2 = arr_row[1] + arr_col[1] + arr_dia[1] + arr_dib[1];
+        console.log(arr_row)
+        console.log(arr_col)
+        console.log(arr_dia)
+        console.log(arr_dib)
+        console.log(line3_1, line3_2);
+        if (line3_1 == line3_2) {
+            $('.scroll').append(`<h2 style="color:green; font-size:80px; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:bold;">${line3_1} - ${line3_2}<br>DRAW</h2>`);
+        }else if(line3_1 > line3_2){
+            $('.scroll').append(`<h2 style="color:red; font-size:80px; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:bold;">${line3_1} - ${line3_2}<br>P1 WIN</h2>`);
+        }else{
+            $('.scroll').append(`<h2 style="color:blue; font-size:80px; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:bold;">${line3_1} - ${line3_2}<br>P2 WIN</h2>`);
+        }
+        // $('.scroll').css('opacity','0.5')
     }
 });
-
-
 
 $('#clickstart').on('click',function(){
     if(yplay == 1){
@@ -374,7 +388,175 @@ function hantei4_dib(arr) {
         }
     }
 }
-
+function hantei3_row(arr) {
+    let count_1
+    let count_2
+    let ren3_1 = 0;
+    let ren3_2 = 0;
+    for (i = 0; i < 4; i++) {
+        console.log(i)
+        count_1 = 0;
+        count_2 = 0;
+        for (j = 0; j < 4; j++) {
+            if (arr[i][j] == 1) {
+                count_1 += 1;
+                count_2 = 0;
+            } else if (arr[i][j] == 2) {
+                count_2 += 1;
+                count_1 = 0;
+            } else if (arr[i][j] == 0) {
+                count_2 = 0;
+                count_1 = 0;
+            }
+            if (count_1 == 3) {
+                ren3_1 += 1;
+            } else if (count_2 == 3) {
+                ren3_2 += 1;
+            }
+        }
+    }
+    return [ren3_1, ren3_2]
+}
+function hantei3_col(arr) {
+    let count_1
+    let count_2
+    let ren3_1 = 0
+    let ren3_2 = 0;
+    for (i = 0; i < 4; i++) {
+        count_1 = 0;
+        count_2 = 0;
+        for (j = 0; j < 4; j++) {
+            if (arr[j][i] == 1) {
+                count_1 += 1;
+                count_2 = 0;
+            } else if (arr[j][i] == 2) {
+                count_2 += 1;
+                count_1 = 0;
+            } else if (arr[j][i] == 0) {
+                count_2 = 0;
+                count_1 = 0;
+            }
+            if (count_1 == 3) {
+                ren3_1 += 1;
+            } else if (count_2 == 3) {
+                ren3_2 += 1;
+            }
+        }
+    }
+    return [ren3_1, ren3_2]
+}
+function hantei3_dia(arr) {
+    let count_1
+    let count_2
+    let ren3_1 = 0;
+    let ren3_2 = 0;
+    for (i = 0; i < 7; i++) {
+        count_1 = 0;
+        count_2 = 0;
+        
+        if(i<=3){
+            let a = 0
+            for (j = i; j < 4;j++) {
+                if (arr[j][a] == 1) {
+                    count_1 += 1;
+                    count_2 = 0;
+                } else if (arr[j][a] == 2) {
+                    count_2 += 1;
+                    count_1 = 0;
+                } else {
+                    count_1 = 0;
+                    count_2 = 0;
+                }
+                if (count_1 == 3) {
+                    ren3_1 += 1;
+                    console.log(ren3_1)
+                } else if (count_2 == 3) {
+                    ren3_2 += 1;
+                    console.log(ren3_2)
+                }
+                a += 1
+            }
+        }
+        if(i>=4){
+            let a=0;
+            
+            for(j=7-i;j<4;j++){
+                if (arr[a][j] == 1) {
+                    count_1 += 1;
+                    count_2 = 0;
+                } else if (arr[a][j] == 2) {
+                    count_2 += 1;
+                    count_1 = 0;
+                } else {
+                    count_1 = 0;
+                    count_2 = 0;
+                }
+                if (count_1 == 3) {
+                    ren3_1 += 1;
+                    console.log(ren3_2)
+                } else if (count_2 == 3) {
+                    ren3_2 += 1;
+                    console.log(ren3_2)
+                }
+                a += 1
+            }
+        }
+    }
+    return [ren3_1, ren3_2]
+}
+function hantei3_dib(arr) {
+    let count_1
+    let count_2
+    let ren3_1 = 0;
+    let ren3_2 = 0;
+    for (i = 0; i < 7; i++) {
+        count_1 = 0;
+        count_2 = 0;
+        if (i <= 3) {
+            let a = 3
+            for (j = i; j < 4; j++) {
+                if (arr[j][a] == 1) {
+                    count_1 += 1;
+                    count_2 = 0;
+                } else if (arr[j][a] == 2) {
+                    count_2 += 1;
+                    count_1 = 0;
+                } else {
+                    count_1 = 0;
+                    count_2 = 0;
+                }
+                if (count_1 == 3) {
+                    ren3_1 += 1;
+                } else if (count_2 == 3) {
+                    ren3_2 += 1;
+                }
+                a -= 1
+            }
+        }
+        if (i >= 4) {
+            let a = i-4;
+            for (j = 0; j < i - 3; j++) {
+                if (arr[j][a] == 1) {
+                    count_1 += 1;
+                    count_2 = 0;
+                } else if (arr[j][a] == 2) {
+                    count_2 += 1;
+                    count_1 = 0;
+                } else {
+                    count_1 = 0;
+                    count_2 = 0;
+                }
+                if (count_1 == 3) {
+                    ren3_1 += 1;
+                } else if (count_2 == 3) {
+                    ren3_2 += 1;
+                }
+                a -= 1
+            }
+        }
+    }
+    return [ren3_1, ren3_2]
+}
 function winner(p){
     $('.scroll').css('pointer-events','none');
     if(yplay == p){
