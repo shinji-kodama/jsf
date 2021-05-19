@@ -9,7 +9,6 @@
     </title>
     <meta name="description" content="${description}" />
     <link rel="stylesheet" href="css/destyle.css">
-    <link rel='icon' href='img/mr.png'>
 
     <style type="text/css">
         body {
@@ -59,10 +58,6 @@
 
         button:active {
             background: linear-gradient(150deg, rgb(208, 208, 208), rgb(101, 101, 101));
-        }
-
-        h2 {
-            font-size:32px ;
         }
 
         .box01 {
@@ -414,9 +409,9 @@
             text-align: center;
             /* border     : 1px solid white; */
             overflow: hidden;
-            pointer-events: auto;
-            z-index: 1000;
-            background: #000;
+            pointer-events: none;
+            z-index: 9999;
+
             /* animation: fadeOut 10s linear 1; */
             /* opacity: 1; */
         }
@@ -427,54 +422,89 @@
             height: 32px;
             position: absolute;
             left: 0%;
-            pointer-events: none;
             /* font-size   : 24px; */
-            
         }
 
-        #nico_0 {top: 0%;        }
-        #nico_1 {            top: 5%;        }
-        #nico_2 {            top: 10%;        }
-        #nico_3 {            top: 15%;        }
-        #nico_4 {            top: 20%;        }
-        #nico_5 {            top: 25%;        }
-        #nico_6 {            top: 30%;        }
-        #nico_7 {            top: 35%;        }
-        #nico_8 {            top: 40%;        }
-        #nico_9 {            top: 45%;        }
-        #nico_10 {            top: 50%;        }
-        #nico_11 {            top: 55%;        }
-        #nico_12 {            top: 60%;        }
-        #nico_13 {            top: 65%;        }
-        #nico_14 {            top: 70%;        }
-        #nico_15 {            top: 75%;        }
-        #nico_16 {            top: 80%;        }
-        #nico_17 {            top: 85%;        }
-        #nico_18 {            top: 90%;        }
-        #nico_19 {            bottom: 0%;        }
-
-        .masu {
-            position:absolute;
-            width: 160px;
-            height: 160px;
+        #nico_0 {
+            top: 0%;
         }
 
-        #A00 {top:0; left:0;}
-        #A01 {top:0; left:160px; }
-        #A02 {top:0; left:320px; }
-        #A03 {top:0; left:480px; }
-        #A10 {top:160px; left:0; }
-        #A11 {top:160px; left:160px; }
-        #A12 {top:160px; left:320px;}
-        #A13 {top:160px; left:480px;}
-        #A20 {top:320px; left:0;}
-        #A21 {top:320px; left:160px;}
-        #A22 {top:320px; left:320px;}
-        #A23 {top:320px; left:480px;}
-        #A30 {top:480px; left:0;}
-        #A31 {top:480px; left:160px; }
-        #A32 {top:480px; left:320px;}
-        #A33 {top:480px; left:480px;}
+        #nico_1 {
+            top: 5%;
+        }
+
+        #nico_2 {
+            top: 10%;
+        }
+
+        #nico_3 {
+            top: 15%;
+        }
+
+        #nico_4 {
+            top: 20%;
+        }
+
+        #nico_5 {
+            top: 25%;
+        }
+
+        #nico_6 {
+            top: 30%;
+        }
+
+        #nico_7 {
+            top: 35%;
+        }
+
+        #nico_8 {
+            top: 40%;
+        }
+
+        #nico_9 {
+            top: 45%;
+        }
+
+        #nico_10 {
+            top: 50%;
+        }
+
+        #nico_11 {
+            top: 55%;
+        }
+
+        #nico_12 {
+            top: 60%;
+        }
+
+        #nico_13 {
+            top: 65%;
+        }
+
+        #nico_14 {
+            top: 70%;
+        }
+
+        #nico_15 {
+            top: 75%;
+        }
+
+        #nico_16 {
+            top: 80%;
+        }
+
+        #nico_17 {
+            top: 85%;
+        }
+
+        #nico_18 {
+            top: 90%;
+        }
+
+        #nico_19 {
+            bottom: 0%;
+        }
+
 
         .scroll p {
             /* font-size:28px;
@@ -489,24 +519,6 @@
             position: absolute;
             left: 0%;
             box-sizing: content-box;
-
-        }
-
-        .clickstart {
-            border:white solid 1px;
-            margin-left: 10px;
-            width: 640px;
-            height:640px;
-            position:absolute; 
-             
-            z-index:2000;
-        }
-        .clickstart h2 {
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform: translate(-50%,-50%);
-            text-align: center;
 
         }
 
@@ -670,22 +682,6 @@
         </ul>
     </div>
     <div class="scroll">
-        <div id="A00" class='masu'></div>
-        <div id="A01" class='masu'></div>
-        <div id="A02" class='masu'></div>
-        <div id="A03" class='masu'></div>
-        <div id="A10" class='masu'></div>
-        <div id="A11" class='masu'></div>
-        <div id="A12" class='masu'></div>
-        <div id="A13" class='masu'></div>
-        <div id="A20" class='masu'></div>
-        <div id="A21" class='masu'></div>
-        <div id="A22" class='masu'></div>
-        <div id="A23" class='masu'></div>
-        <div id="A30" class='masu'></div>
-        <div id="A31" class='masu'></div>
-        <div id="A32" class='masu'></div>
-        <div id="A33" class='masu'></div>
         <span id="nico_0"></span>
         <span id="nico_1"></span>
         <span id="nico_2"></span>
@@ -707,10 +703,7 @@
         <span id="nico_18"></span>
         <span id="nico_19"></span>
     </div>
-    <div class="clickstart" id="clickstart">
-        <h2 style='color:white'>2 Players Join<br><br>then<br><br>Click start</h2>
-    </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!--** 以下Firebase **-->
