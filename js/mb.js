@@ -159,7 +159,7 @@ let p2_is;
 firebase.database().ref(SVR + '/player01').on('value', function (data) { //P1,P2選択後ゲーム開始。先行決定、bgm
     const v = data.val();
     if (v.name == 'absent') {
-        $('#A01').html(`<h2 style="color:red;left:-75%;position:absolute;">PLAYER_1 不在</h2>`)
+        $('#A01').html(`<h2 style="color:red;left:-75%;position:absolute;">NO PLAYER_1</h2>`)
         p1_is = false;
     } else {
         $('#A01').html('')
@@ -170,7 +170,7 @@ firebase.database().ref(SVR + '/player01').on('value', function (data) { //P1,P2
 firebase.database().ref(SVR + '/player02').on('value', function (data) {
     const w = data.val();
     if (w.name == 'absent') {
-        $('#A02').html(`<h2 style="color:blue;right:-75%;position:absolute;">PLAYER_2 不在</h2>`)
+        $('#A02').html(`<h2 style="color:skyblue;right:-75%;position:absolute;">NO PLAYER_2</h2>`)
         p2_is = false;
     } else {
         $('#A02').html('')
