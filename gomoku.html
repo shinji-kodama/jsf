@@ -1,14 +1,16 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>
-        4マスマルバツ
+        五目並べ
     </title>
     <meta name="description" content="${description}" />
     <link rel="stylesheet" href="css/destyle.css">
+    <link rel='icon' href='img/mr.png'>
 
     <style type="text/css">
         body {
@@ -58,6 +60,10 @@
 
         button:active {
             background: linear-gradient(150deg, rgb(208, 208, 208), rgb(101, 101, 101));
+        }
+
+        h2 {
+            font-size: 32px;
         }
 
         .box01 {
@@ -409,9 +415,9 @@
             text-align: center;
             /* border     : 1px solid white; */
             overflow: hidden;
-            pointer-events: none;
-            z-index: 9999;
-
+            pointer-events: auto;
+            z-index: 1000;
+            background: #000;
             /* animation: fadeOut 10s linear 1; */
             /* opacity: 1; */
         }
@@ -422,89 +428,436 @@
             height: 32px;
             position: absolute;
             left: 0%;
+            pointer-events: none;
             /* font-size   : 24px; */
+
         }
 
-        #nico_0 {
-            top: 0%;
+         #nico_0 {top: 0%;        }
+        #nico_1 {            top: 5%;        }
+        #nico_2 {            top: 10%;        }
+        #nico_3 {            top: 15%;        }
+        #nico_4 {            top: 20%;        }
+        #nico_5 {            top: 25%;        }
+        #nico_6 {            top: 30%;        }
+        #nico_7 {            top: 35%;        }
+        #nico_8 {            top: 40%;        }
+        #nico_9 {            top: 45%;        }
+        #nico_10 {            top: 50%;        }
+        #nico_11 {            top: 55%;        }
+        #nico_12 {            top: 60%;        }
+        #nico_13 {            top: 65%;        }
+        #nico_14 {            top: 70%;        }
+        #nico_15 {            top: 75%;        }
+        #nico_16 {            top: 80%;        }
+        #nico_17 {            top: 85%;        }
+        #nico_18 {            top: 90%;        }
+        #nico_19 {            bottom: 0%;        }
+
+        .masu {
+            position:absolute;
+            width: 34px;
+            height: 34px;
         }
 
-        #nico_1 {
-            top: 5%;
-        }
+        #A0B0 {top:-1px; left:-1px;}
+        #A0B1 {top:-1px; left:33px;}
+        #A0B2 {top:-1px; left:67px;}
+        #A0B3 {top:-1px; left:101px;}
+        #A0B4 {top:-1px; left:134px;}
+        #A0B5 {top:-1px; left:168px;}
+        #A0B6 {top:-1px; left:202px;}
+        #A0B7 {top:-1px; left:236px;}
+        #A0B8 {top:-1px; left:269px;}
+        #A0B9 {top:-1px; left:303px;}
+        #A0B10 {top:-1px; left:337px;}
+        #A0B11 {top:-1px; left:371px;}
+        #A0B12 {top:-1px; left:404px;}
+        #A0B13 {top:-1px; left:438px;}
+        #A0B14 {top:-1px; left:472px;}
+        #A0B15 {top:-1px; left:506px;}
+        #A0B16 {top:-1px; left:539px;}
+        #A0B17 {top:-1px; left:573px;}
+        #A0B18 {top:-1px; left:607px; }
 
-        #nico_2 {
-            top: 10%;
-        }
+        #A1B0 {top:33px; left:-1px;}
+        #A1B1 {top:33px; left:33px;}
+        #A1B2 {top:33px; left:67px;}
+        #A1B3 {top:33px; left:101px;}
+        #A1B4 {top:33px; left:134px;}
+        #A1B5 {top:33px; left:168px;}
+        #A1B6 {top:33px; left:202px;}
+        #A1B7 {top:33px; left:236px;}
+        #A1B8 {top:33px; left:269px;}
+        #A1B9 {top:33px; left:303px;}
+        #A1B10 {top:33px; left:337px;}
+        #A1B11 {top:33px; left:371px;}
+        #A1B12 {top:33px; left:404px;}
+        #A1B13 {top:33px; left:438px;}
+        #A1B14 {top:33px; left:472px;}
+        #A1B15 {top:33px; left:506px;}
+        #A1B16 {top:33px; left:539px;}
+        #A1B17 {top:33px; left:573px;}
+        #A1B18 {top:33px; left:607px;}
 
-        #nico_3 {
-            top: 15%;
-        }
+        #A2B0 {top:67px; left:-1px;}
+        #A2B1 {top:67px; left:33px;}
+        #A2B2 {top:67px; left:67px;}
+        #A2B3 {top:67px; left:101px;}
+        #A2B4 {top:67px; left:134px;}
+        #A2B5 {top:67px; left:168px;}
+        #A2B6 {top:67px; left:202px;}
+        #A2B7 {top:67px; left:236px;}
+        #A2B8 {top:67px; left:269px;}
+        #A2B9 {top:67px; left:303px;}
+        #A2B10 {top:67px; left:337px;}
+        #A2B11 {top:67px; left:371px;}
+        #A2B12 {top:67px; left:404px;}
+        #A2B13 {top:67px; left:438px;}
+        #A2B14 {top:67px; left:472px;}
+        #A2B15 {top:67px; left:506px;}
+        #A2B16 {top:67px; left:539px;}
+        #A2B17 {top:67px; left:573px;}
+        #A2B18 {top:67px; left:607px; }
+        
+        #A3B0 {top:101px; left:-1px;}
+        #A3B1 {top:101px; left:33px;}
+        #A3B2 {top:101px; left:67px;}
+        #A3B3 {top:101px; left:101px;}
+        #A3B4 {top:101px; left:134px;}
+        #A3B5 {top:101px; left:168px;}
+        #A3B6 {top:101px; left:202px;}
+        #A3B7 {top:101px; left:236px;}
+        #A3B8 {top:101px; left:269px;}
+        #A3B9 {top:101px; left:303px;}
+        #A3B10 {top:101px; left:337px;}
+        #A3B11 {top:101px; left:371px;}
+        #A3B12 {top:101px; left:404px;}
+        #A3B13 {top:101px; left:438px;}
+        #A3B14 {top:101px; left:472px;}
+        #A3B15 {top:101px; left:506px;}
+        #A3B16 {top:101px; left:539px;}
+        #A3B17 {top:101px; left:573px;}
+        #A3B18 {top:101px; left:607px; }
+        
+        #A4B0 {top:134px; left:-1px;}
+        #A4B1 {top:134px; left:33px;}
+        #A4B2 {top:134px; left:67px;}
+        #A4B3 {top:134px; left:101px;}
+        #A4B4 {top:134px; left:134px;}
+        #A4B5 {top:134px; left:168px;}
+        #A4B6 {top:134px; left:202px;}
+        #A4B7 {top:134px; left:236px;}
+        #A4B8 {top:134px; left:269px;}
+        #A4B9 {top:134px; left:303px;}
+        #A4B10 {top:134px; left:337px;}
+        #A4B11 {top:134px; left:371px;}
+        #A4B12 {top:134px; left:404px;}
+        #A4B13 {top:134px; left:438px;}
+        #A4B14 {top:134px; left:472px;}
+        #A4B15 {top:134px; left:506px;}
+        #A4B16 {top:134px; left:539px;}
+        #A4B17 {top:134px; left:573px;}
+        #A4B18 {top:134px; left:607px; }
+        
+        #A5B0 {top:168px; left:-1px;}
+        #A5B1 {top:168px; left:33px;}
+        #A5B2 {top:168px; left:67px;}
+        #A5B3 {top:168px; left:101px;}
+        #A5B4 {top:168px; left:134px;}
+        #A5B5 {top:168px; left:168px;}
+        #A5B6 {top:168px; left:202px;}
+        #A5B7 {top:168px; left:236px;}
+        #A5B8 {top:168px; left:269px;}
+        #A5B9 {top:168px; left:303px;}
+        #A5B10 {top:168px; left:337px;}
+        #A5B11 {top:168px; left:371px;}
+        #A5B12 {top:168px; left:404px;}
+        #A5B13 {top:168px; left:438px;}
+        #A5B14 {top:168px; left:472px;}
+        #A5B15 {top:168px; left:506px;}
+        #A5B16 {top:168px; left:539px;}
+        #A5B17 {top:168px; left:573px;}
+        #A5B18 {top:168px; left:607px; }
 
-        #nico_4 {
-            top: 20%;
-        }
+        #A6B0 {top:202px; left:-1px;}
+        #A6B1 {top:202px; left:33px;}
+        #A6B2 {top:202px; left:67px;}
+        #A6B3 {top:202px; left:101px;}
+        #A6B4 {top:202px; left:134px;}
+        #A6B5 {top:202px; left:168px;}
+        #A6B6 {top:202px; left:202px;}
+        #A6B7 {top:202px; left:236px;}
+        #A6B8 {top:202px; left:269px;}
+        #A6B9 {top:202px; left:303px;}
+        #A6B10 {top:202px; left:337px;}
+        #A6B11 {top:202px; left:371px;}
+        #A6B12 {top:202px; left:404px;}
+        #A6B13 {top:202px; left:438px;}
+        #A6B14 {top:202px; left:472px;}
+        #A6B15 {top:202px; left:506px;}
+        #A6B16 {top:202px; left:539px;}
+        #A6B17 {top:202px; left:573px;}
+        #A6B18 {top:202px; left:607px; }
+        
+        #A7B0 {top:236px; left:-1px;}
+        #A7B1 {top:236px; left:33px;}
+        #A7B2 {top:236px; left:67px;}
+        #A7B3 {top:236px; left:101px;}
+        #A7B4 {top:236px; left:134px;}
+        #A7B5 {top:236px; left:168px;}
+        #A7B6 {top:236px; left:202px;}
+        #A7B7 {top:236px; left:236px;}
+        #A7B8 {top:236px; left:269px;}
+        #A7B9 {top:236px; left:303px;}
+        #A7B10 {top:236px; left:337px;}
+        #A7B11 {top:236px; left:371px;}
+        #A7B12 {top:236px; left:404px;}
+        #A7B13 {top:236px; left:438px;}
+        #A7B14 {top:236px; left:472px;}
+        #A7B15 {top:236px; left:506px;}
+        #A7B16 {top:236px; left:539px;}
+        #A7B17 {top:236px; left:573px;}
+        #A7B18 {top:236px; left:607px; }
+        
+        #A8B0 {top:269px; left:-1px;}
+        #A8B1 {top:269px; left:33px;}
+        #A8B2 {top:269px; left:67px;}
+        #A8B3 {top:269px; left:101px;}
+        #A8B4 {top:269px; left:134px;}
+        #A8B5 {top:269px; left:168px;}
+        #A8B6 {top:269px; left:202px;}
+        #A8B7 {top:269px; left:236px;}
+        #A8B8 {top:269px; left:269px;}
+        #A8B9 {top:269px; left:303px;}
+        #A8B10 {top:269px; left:337px;}
+        #A8B11 {top:269px; left:371px;}
+        #A8B12 {top:269px; left:404px;}
+        #A8B13 {top:269px; left:438px;}
+        #A8B14 {top:269px; left:472px;}
+        #A8B15 {top:269px; left:506px;}
+        #A8B16 {top:269px; left:539px;}
+        #A8B17 {top:269px; left:573px;}
+        #A8B18 {top:269px; left:607px; }
 
-        #nico_5 {
-            top: 25%;
-        }
+        #A9B0 {top:303px; left:-1px;}
+        #A9B1 {top:303px; left:33px;}
+        #A9B2 {top:303px; left:67px;}
+        #A9B3 {top:303px; left:101px;}
+        #A9B4 {top:303px; left:134px;}
+        #A9B5 {top:303px; left:168px;}
+        #A9B6 {top:303px; left:202px;}
+        #A9B7 {top:303px; left:236px;}
+        #A9B8 {top:303px; left:269px;}
+        #A9B9 {top:303px; left:303px;}
+        #A9B10 {top:303px; left:337px;}
+        #A9B11 {top:303px; left:371px;}
+        #A9B12 {top:303px; left:404px;}
+        #A9B13 {top:303px; left:438px;}
+        #A9B14 {top:303px; left:472px;}
+        #A9B15 {top:303px; left:506px;}
+        #A9B16 {top:303px; left:539px;}
+        #A9B17 {top:303px; left:573px;}
+        #A9B18 {top:303px; left:607px; }
 
-        #nico_6 {
-            top: 30%;
-        }
+        #A10B0 {top:337px; left:-1px;}
+        #A10B1 {top:337px; left:33px;}
+        #A10B2 {top:337px; left:67px;}
+        #A10B3 {top:337px; left:101px;}
+        #A10B4 {top:337px; left:134px;}
+        #A10B5 {top:337px; left:168px;}
+        #A10B6 {top:337px; left:202px;}
+        #A10B7 {top:337px; left:236px;}
+        #A10B8 {top:337px; left:269px;}
+        #A10B9 {top:337px; left:303px;}
+        #A10B10 {top:337px; left:337px;}
+        #A10B11 {top:337px; left:371px;}
+        #A10B12 {top:337px; left:404px;}
+        #A10B13 {top:337px; left:438px;}
+        #A10B14 {top:337px; left:472px;}
+        #A10B15 {top:337px; left:506px;}
+        #A10B16 {top:337px; left:539px;}
+        #A10B17 {top:337px; left:573px;}
+        #A10B18 {top:337px; left:607px;}
 
-        #nico_7 {
-            top: 35%;
-        }
+        #A11B0 {top:371px; left:-1px;}
+        #A11B1 {top:371px; left:33px;}
+        #A11B2 {top:371px; left:67px;}
+        #A11B3 {top:371px; left:101px;}
+        #A11B4 {top:371px; left:134px;}
+        #A11B5 {top:371px; left:168px;}
+        #A11B6 {top:371px; left:202px;}
+        #A11B7 {top:371px; left:236px;}
+        #A11B8 {top:371px; left:269px;}
+        #A11B9 {top:371px; left:303px;}
+        #A11B10 {top:371px; left:337px;}
+        #A11B11 {top:371px; left:371px;}
+        #A11B12 {top:371px; left:404px;}
+        #A11B13 {top:371px; left:438px;}
+        #A11B14 {top:371px; left:472px;}
+        #A11B15 {top:371px; left:506px;}
+        #A11B16 {top:371px; left:539px;}
+        #A11B17 {top:371px; left:573px;}
+        #A11B18 {top:371px; left:607px; }
 
-        #nico_8 {
-            top: 40%;
-        }
+        #A12B0 {top:404px; left:-1px;}
+        #A12B1 {top:404px; left:33px;}
+        #A12B2 {top:404px; left:67px;}
+        #A12B3 {top:404px; left:101px;}
+        #A12B4 {top:404px; left:134px;}
+        #A12B5 {top:404px; left:168px;}
+        #A12B6 {top:404px; left:202px;}
+        #A12B7 {top:404px; left:236px;}
+        #A12B8 {top:404px; left:269px;}
+        #A12B9 {top:404px; left:303px;}
+        #A12B10 {top:404px; left:337px;}
+        #A12B11 {top:404px; left:371px;}
+        #A12B12 {top:404px; left:404px;}
+        #A12B13 {top:404px; left:438px;}
+        #A12B14 {top:404px; left:472px;}
+        #A12B15 {top:404px; left:506px;}
+        #A12B16 {top:404px; left:539px;}
+        #A12B17 {top:404px; left:573px;}
+        #A12B18 {top:404px; left:607px;}
 
-        #nico_9 {
-            top: 45%;
-        }
+        #A13B0 {top:438px; left:-1px;}
+        #A13B1 {top:438px; left:33px;}
+        #A13B2 {top:438px; left:67px;}
+        #A13B3 {top:438px; left:101px;}
+        #A13B4 {top:438px; left:134px;}
+        #A13B5 {top:438px; left:168px;}
+        #A13B6 {top:438px; left:202px;}
+        #A13B7 {top:438px; left:236px;}
+        #A13B8 {top:438px; left:269px;}
+        #A13B9 {top:438px; left:303px;}
+        #A13B10 {top:438px; left:337px;}
+        #A13B11 {top:438px; left:371px;}
+        #A13B12 {top:438px; left:404px;}
+        #A13B13 {top:438px; left:438px;}
+        #A13B14 {top:438px; left:472px;}
+        #A13B15 {top:438px; left:506px;}
+        #A13B16 {top:438px; left:539px;}
+        #A13B17 {top:438px; left:573px;}
+        #A13B18 {top:438px; left:607px; }
 
-        #nico_10 {
-            top: 50%;
-        }
+        #A14B0 {top:472px; left:-1px;}
+        #A14B1 {top:472px; left:33px;}
+        #A14B2 {top:472px; left:67px;}
+        #A14B3 {top:472px; left:101px;}
+        #A14B4 {top:472px; left:134px;}
+        #A14B5 {top:472px; left:168px;}
+        #A14B6 {top:472px; left:202px;}
+        #A14B7 {top:472px; left:236px;}
+        #A14B8 {top:472px; left:269px;}
+        #A14B9 {top:472px; left:303px;}
+        #A14B10 {top:472px; left:337px;}
+        #A14B11 {top:472px; left:371px;}
+        #A14B12 {top:472px; left:404px;}
+        #A14B13 {top:472px; left:438px;}
+        #A14B14 {top:472px; left:472px;}
+        #A14B15 {top:472px; left:506px;}
+        #A14B16 {top:472px; left:539px;}
+        #A14B17 {top:472px; left:573px;}
+        #A14B18 {top:472px; left:607px; }
 
-        #nico_11 {
-            top: 55%;
-        }
+        #A15B0 {top:506px; left:-1px;}
+        #A15B1 {top:506px; left:33px;}
+        #A15B2 {top:506px; left:67px;}
+        #A15B3 {top:506px; left:101px;}
+        #A15B4 {top:506px; left:134px;}
+        #A15B5 {top:506px; left:168px;}
+        #A15B6 {top:506px; left:202px;}
+        #A15B7 {top:506px; left:236px;}
+        #A15B8 {top:506px; left:269px;}
+        #A15B9 {top:506px; left:303px;}
+        #A15B10 {top:506px; left:337px;}
+        #A15B11 {top:506px; left:371px;}
+        #A15B12 {top:506px; left:404px;}
+        #A15B13 {top:506px; left:438px;}
+        #A15B14 {top:506px; left:472px;}
+        #A15B15 {top:506px; left:506px;}
+        #A15B16 {top:506px; left:539px;}
+        #A15B17 {top:506px; left:573px;}
+        #A15B18 {top:506px; left:607px; }
 
-        #nico_12 {
-            top: 60%;
-        }
+        #A16B0 {top:539px; left:-1px;}
+        #A16B1 {top:539px; left:33px;}
+        #A16B2 {top:539px; left:67px;}
+        #A16B3 {top:539px; left:101px;}
+        #A16B4 {top:539px; left:134px;}
+        #A16B5 {top:539px; left:168px;}
+        #A16B6 {top:539px; left:202px;}
+        #A16B7 {top:539px; left:236px;}
+        #A16B8 {top:539px; left:269px;}
+        #A16B9 {top:539px; left:303px;}
+        #A16B10 {top:539px; left:337px;}
+        #A16B11 {top:539px; left:371px;}
+        #A16B12 {top:539px; left:404px;}
+        #A16B13 {top:539px; left:438px;}
+        #A16B14 {top:539px; left:472px;}
+        #A16B15 {top:539px; left:506px;}
+        #A16B16 {top:539px; left:539px;}
+        #A16B17 {top:539px; left:573px;}
+        #A16B18 {top:539px; left:607px; }
 
-        #nico_13 {
-            top: 65%;
-        }
+        #A17B0 {top:573px; left:-1px;}
+        #A17B1 {top:573px; left:33px;}
+        #A17B2 {top:573px; left:67px;}
+        #A17B3 {top:573px; left:101px;}
+        #A17B4 {top:573px; left:134px;}
+        #A17B5 {top:573px; left:168px;}
+        #A17B6 {top:573px; left:202px;}
+        #A17B7 {top:573px; left:236px;}
+        #A17B8 {top:573px; left:269px;}
+        #A17B9 {top:573px; left:303px;}
+        #A17B10 {top:573px; left:337px;}
+        #A17B11 {top:573px; left:371px;}
+        #A17B12 {top:573px; left:404px;}
+        #A17B13 {top:573px; left:438px;}
+        #A17B14 {top:573px; left:472px;}
+        #A17B15 {top:573px; left:506px;}
+        #A17B16 {top:573px; left:539px;}
+        #A17B17 {top:573px; left:573px;}
+        #A17B18 {top:573px; left:607px; }
 
-        #nico_14 {
-            top: 70%;
-        }
+        #A18B0 {top:607px; left:-1px;}
+        #A18B1 {top:607px; left:33px;}
+        #A18B2 {top:607px; left:67px;}
+        #A18B3 {top:607px; left:101px;}
+        #A18B4 {top:607px; left:134px;}
+        #A18B5 {top:607px; left:168px;}
+        #A18B6 {top:607px; left:202px;}
+        #A18B7 {top:607px; left:236px;}
+        #A18B8 {top:607px; left:269px;}
+        #A18B9 {top:607px; left:303px;}
+        #A18B10 {top:607px; left:337px;}
+        #A18B11 {top:607px; left:371px;}
+        #A18B12 {top:607px; left:404px;}
+        #A18B13 {top:607px; left:438px;}
+        #A18B14 {top:607px; left:472px;}
+        #A18B15 {top:607px; left:506px;}
+        #A18B16 {top:607px; left:539px;}
+        #A18B17 {top:607px; left:573px;}
+        #A18B18 {top:607px; left:607px; }
 
-        #nico_15 {
-            top: 75%;
-        }
 
-        #nico_16 {
-            top: 80%;
-        }
 
-        #nico_17 {
-            top: 85%;
-        }
 
-        #nico_18 {
-            top: 90%;
-        }
 
-        #nico_19 {
-            bottom: 0%;
-        }
 
+
+        /* #A1B0 {top:160px; left:0; }
+        #A1B1 {top:160px; left:160px; }
+        #A1B2 {top:160px; left:320px;}
+        #A1B3 {top:160px; left:480px;}
+        #A2B0 {top:320px; left:0;}
+        #A2B1 {top:320px; left:160px;}
+        #A2B2 {top:320px; left:320px;}
+        #A2B3 {top:320px; left:480px;}
+        #A3B0 {top:480px; left:0;}
+        #A3B1 {top:480px; left:160px; }
+        #A3B2 {top:480px; left:320px;}
+        #A3B3 {top:480px; left:480px;} */
 
         .scroll p {
             /* font-size:28px;
@@ -519,6 +872,25 @@
             position: absolute;
             left: 0%;
             box-sizing: content-box;
+
+        }
+
+        .clickstart {
+            border: white solid 1px;
+            margin-left: 10px;
+            width: 640px;
+            height: 640px;
+            position: absolute;
+
+            z-index: 2000;
+        }
+
+        .clickstart h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
 
         }
 
@@ -682,6 +1054,386 @@
         </ul>
     </div>
     <div class="scroll">
+        <div id="A0B0" class='masu'></div>
+        <div id="A0B1" class='masu'></div>
+        <div id="A0B2" class='masu'></div>
+        <div id="A0B3" class='masu'></div>
+        <div id="A0B4" class='masu'></div>
+        <div id="A0B5" class='masu'></div>
+        <div id="A0B6" class='masu'></div>
+        <div id="A0B7" class='masu'></div>
+        <div id="A0B8" class='masu'></div>
+        <div id="A0B9" class='masu'></div>
+        <div id="A0B10" class='masu'></div>
+        <div id="A0B11" class='masu'></div>
+        <div id="A0B12" class='masu'></div>
+        <div id="A0B13" class='masu'></div>
+        <div id="A0B14" class='masu'></div>
+        <div id="A0B15" class='masu'></div>
+        <div id="A0B16" class='masu'></div>
+        <div id="A0B17" class='masu'></div>
+        <div id="A0B18" class='masu'></div>
+
+        <div id="A1B0" class='masu'></div>
+        <div id="A1B1" class='masu'></div>
+        <div id="A1B2" class='masu'></div>
+        <div id="A1B3" class='masu'></div>
+        <div id="A1B4" class='masu'></div>
+        <div id="A1B5" class='masu'></div>
+        <div id="A1B6" class='masu'></div>
+        <div id="A1B7" class='masu'></div>
+        <div id="A1B8" class='masu'></div>
+        <div id="A1B9" class='masu'></div>
+        <div id="A1B10" class='masu'></div>
+        <div id="A1B11" class='masu'></div>
+        <div id="A1B12" class='masu'></div>
+        <div id="A1B13" class='masu'></div>
+        <div id="A1B14" class='masu'></div>
+        <div id="A1B15" class='masu'></div>
+        <div id="A1B16" class='masu'></div>
+        <div id="A1B17" class='masu'></div>
+        <div id="A1B18" class='masu'></div>
+
+        <div id="A2B0" class='masu'></div>
+        <div id="A2B1" class='masu'></div>
+        <div id="A2B2" class='masu'></div>
+        <div id="A2B3" class='masu'></div>
+        <div id="A2B4" class='masu'></div>
+        <div id="A2B5" class='masu'></div>
+        <div id="A2B6" class='masu'></div>
+        <div id="A2B7" class='masu'></div>
+        <div id="A2B8" class='masu'></div>
+        <div id="A2B9" class='masu'></div>
+        <div id="A2B10" class='masu'></div>
+        <div id="A2B11" class='masu'></div>
+        <div id="A2B12" class='masu'></div>
+        <div id="A2B13" class='masu'></div>
+        <div id="A2B14" class='masu'></div>
+        <div id="A2B15" class='masu'></div>
+        <div id="A2B16" class='masu'></div>
+        <div id="A2B17" class='masu'></div>
+        <div id="A2B18" class='masu'></div>
+
+        <div id="A3B0" class='masu'></div>
+        <div id="A3B1" class='masu'></div>
+        <div id="A3B2" class='masu'></div>
+        <div id="A3B3" class='masu'></div>
+        <div id="A3B4" class='masu'></div>
+        <div id="A3B5" class='masu'></div>
+        <div id="A3B6" class='masu'></div>
+        <div id="A3B7" class='masu'></div>
+        <div id="A3B8" class='masu'></div>
+        <div id="A3B9" class='masu'></div>
+        <div id="A3B10" class='masu'></div>
+        <div id="A3B11" class='masu'></div>
+        <div id="A3B12" class='masu'></div>
+        <div id="A3B13" class='masu'></div>
+        <div id="A3B14" class='masu'></div>
+        <div id="A3B15" class='masu'></div>
+        <div id="A3B16" class='masu'></div>
+        <div id="A3B17" class='masu'></div>
+        <div id="A3B18" class='masu'></div>
+
+        <div id="A4B0" class='masu'></div>
+        <div id="A4B1" class='masu'></div>
+        <div id="A4B2" class='masu'></div>
+        <div id="A4B3" class='masu'></div>
+        <div id="A4B4" class='masu'></div>
+        <div id="A4B5" class='masu'></div>
+        <div id="A4B6" class='masu'></div>
+        <div id="A4B7" class='masu'></div>
+        <div id="A4B8" class='masu'></div>
+        <div id="A4B9" class='masu'></div>
+        <div id="A4B10" class='masu'></div>
+        <div id="A4B11" class='masu'></div>
+        <div id="A4B12" class='masu'></div>
+        <div id="A4B13" class='masu'></div>
+        <div id="A4B14" class='masu'></div>
+        <div id="A4B15" class='masu'></div>
+        <div id="A4B16" class='masu'></div>
+        <div id="A4B17" class='masu'></div>
+        <div id="A4B18" class='masu'></div>
+
+        <div id="A5B0" class='masu'></div>
+        <div id="A5B1" class='masu'></div>
+        <div id="A5B2" class='masu'></div>
+        <div id="A5B3" class='masu'></div>
+        <div id="A5B4" class='masu'></div>
+        <div id="A5B5" class='masu'></div>
+        <div id="A5B6" class='masu'></div>
+        <div id="A5B7" class='masu'></div>
+        <div id="A5B8" class='masu'></div>
+        <div id="A5B9" class='masu'></div>
+        <div id="A5B10" class='masu'></div>
+        <div id="A5B11" class='masu'></div>
+        <div id="A5B12" class='masu'></div>
+        <div id="A5B13" class='masu'></div>
+        <div id="A5B14" class='masu'></div>
+        <div id="A5B15" class='masu'></div>
+        <div id="A5B16" class='masu'></div>
+        <div id="A5B17" class='masu'></div>
+        <div id="A5B18" class='masu'></div>
+
+        <div id="A6B0" class='masu'></div>
+        <div id="A6B1" class='masu'></div>
+        <div id="A6B2" class='masu'></div>
+        <div id="A6B3" class='masu'></div>
+        <div id="A6B4" class='masu'></div>
+        <div id="A6B5" class='masu'></div>
+        <div id="A6B6" class='masu'></div>
+        <div id="A6B7" class='masu'></div>
+        <div id="A6B8" class='masu'></div>
+        <div id="A6B9" class='masu'></div>
+        <div id="A6B10" class='masu'></div>
+        <div id="A6B11" class='masu'></div>
+        <div id="A6B12" class='masu'></div>
+        <div id="A6B13" class='masu'></div>
+        <div id="A6B14" class='masu'></div>
+        <div id="A6B15" class='masu'></div>
+        <div id="A6B16" class='masu'></div>
+        <div id="A6B17" class='masu'></div>
+        <div id="A6B18" class='masu'></div>
+
+        <div id="A7B0" class='masu'></div>
+        <div id="A7B1" class='masu'></div>
+        <div id="A7B2" class='masu'></div>
+        <div id="A7B3" class='masu'></div>
+        <div id="A7B4" class='masu'></div>
+        <div id="A7B5" class='masu'></div>
+        <div id="A7B6" class='masu'></div>
+        <div id="A7B7" class='masu'></div>
+        <div id="A7B8" class='masu'></div>
+        <div id="A7B9" class='masu'></div>
+        <div id="A7B10" class='masu'></div>
+        <div id="A7B11" class='masu'></div>
+        <div id="A7B12" class='masu'></div>
+        <div id="A7B13" class='masu'></div>
+        <div id="A7B14" class='masu'></div>
+        <div id="A7B15" class='masu'></div>
+        <div id="A7B16" class='masu'></div>
+        <div id="A7B17" class='masu'></div>
+        <div id="A7B18" class='masu'></div>
+
+        <div id="A8B0" class='masu'></div>
+        <div id="A8B1" class='masu'></div>
+        <div id="A8B2" class='masu'></div>
+        <div id="A8B3" class='masu'></div>
+        <div id="A8B4" class='masu'></div>
+        <div id="A8B5" class='masu'></div>
+        <div id="A8B6" class='masu'></div>
+        <div id="A8B7" class='masu'></div>
+        <div id="A8B8" class='masu'></div>
+        <div id="A8B9" class='masu'></div>
+        <div id="A8B10" class='masu'></div>
+        <div id="A8B11" class='masu'></div>
+        <div id="A8B12" class='masu'></div>
+        <div id="A8B13" class='masu'></div>
+        <div id="A8B14" class='masu'></div>
+        <div id="A8B15" class='masu'></div>
+        <div id="A8B16" class='masu'></div>
+        <div id="A8B17" class='masu'></div>
+        <div id="A8B18" class='masu'></div>
+
+        <div id="A9B0" class='masu'></div>
+        <div id="A9B1" class='masu'></div>
+        <div id="A9B2" class='masu'></div>
+        <div id="A9B3" class='masu'></div>
+        <div id="A9B4" class='masu'></div>
+        <div id="A9B5" class='masu'></div>
+        <div id="A9B6" class='masu'></div>
+        <div id="A9B7" class='masu'></div>
+        <div id="A9B8" class='masu'></div>
+        <div id="A9B9" class='masu'></div>
+        <div id="A9B10" class='masu'></div>
+        <div id="A9B11" class='masu'></div>
+        <div id="A9B12" class='masu'></div>
+        <div id="A9B13" class='masu'></div>
+        <div id="A9B14" class='masu'></div>
+        <div id="A9B15" class='masu'></div>
+        <div id="A9B16" class='masu'></div>
+        <div id="A9B17" class='masu'></div>
+        <div id="A9B18" class='masu'></div>
+
+        <div id="A10B0" class='masu'></div>
+        <div id="A10B1" class='masu'></div>
+        <div id="A10B2" class='masu'></div>
+        <div id="A10B3" class='masu'></div>
+        <div id="A10B4" class='masu'></div>
+        <div id="A10B5" class='masu'></div>
+        <div id="A10B6" class='masu'></div>
+        <div id="A10B7" class='masu'></div>
+        <div id="A10B8" class='masu'></div>
+        <div id="A10B9" class='masu'></div>
+        <div id="A10B10" class='masu'></div>
+        <div id="A10B11" class='masu'></div>
+        <div id="A10B12" class='masu'></div>
+        <div id="A10B13" class='masu'></div>
+        <div id="A10B14" class='masu'></div>
+        <div id="A10B15" class='masu'></div>
+        <div id="A10B16" class='masu'></div>
+        <div id="A10B17" class='masu'></div>
+        <div id="A10B18" class='masu'></div>
+        
+        <div id="A11B0" class='masu'></div>
+        <div id="A11B1" class='masu'></div>
+        <div id="A11B2" class='masu'></div>
+        <div id="A11B3" class='masu'></div>
+        <div id="A11B4" class='masu'></div>
+        <div id="A11B5" class='masu'></div>
+        <div id="A11B6" class='masu'></div>
+        <div id="A11B7" class='masu'></div>
+        <div id="A11B8" class='masu'></div>
+        <div id="A11B9" class='masu'></div>
+        <div id="A11B10" class='masu'></div>
+        <div id="A11B11" class='masu'></div>
+        <div id="A11B12" class='masu'></div>
+        <div id="A11B13" class='masu'></div>
+        <div id="A11B14" class='masu'></div>
+        <div id="A11B15" class='masu'></div>
+        <div id="A11B16" class='masu'></div>
+        <div id="A11B17" class='masu'></div>
+        <div id="A11B18" class='masu'></div>
+
+        <div id="A12B0" class='masu'></div>
+        <div id="A12B1" class='masu'></div>
+        <div id="A12B2" class='masu'></div>
+        <div id="A12B3" class='masu'></div>
+        <div id="A12B4" class='masu'></div>
+        <div id="A12B5" class='masu'></div>
+        <div id="A12B6" class='masu'></div>
+        <div id="A12B7" class='masu'></div>
+        <div id="A12B8" class='masu'></div>
+        <div id="A12B9" class='masu'></div>
+        <div id="A12B10" class='masu'></div>
+        <div id="A12B11" class='masu'></div>
+        <div id="A12B12" class='masu'></div>
+        <div id="A12B13" class='masu'></div>
+        <div id="A12B14" class='masu'></div>
+        <div id="A12B15" class='masu'></div>
+        <div id="A12B16" class='masu'></div>
+        <div id="A12B17" class='masu'></div>
+        <div id="A12B18" class='masu'></div>
+
+        <div id="A13B0" class='masu'></div>
+        <div id="A13B1" class='masu'></div>
+        <div id="A13B2" class='masu'></div>
+        <div id="A13B3" class='masu'></div>
+        <div id="A13B4" class='masu'></div>
+        <div id="A13B5" class='masu'></div>
+        <div id="A13B6" class='masu'></div>
+        <div id="A13B7" class='masu'></div>
+        <div id="A13B8" class='masu'></div>
+        <div id="A13B9" class='masu'></div>
+        <div id="A13B10" class='masu'></div>
+        <div id="A13B11" class='masu'></div>
+        <div id="A13B12" class='masu'></div>
+        <div id="A13B13" class='masu'></div>
+        <div id="A13B14" class='masu'></div>
+        <div id="A13B15" class='masu'></div>
+        <div id="A13B16" class='masu'></div>
+        <div id="A13B17" class='masu'></div>
+        <div id="A13B18" class='masu'></div>
+
+        <div id="A14B0" class='masu'></div>
+        <div id="A14B1" class='masu'></div>
+        <div id="A14B2" class='masu'></div>
+        <div id="A14B3" class='masu'></div>
+        <div id="A14B4" class='masu'></div>
+        <div id="A14B5" class='masu'></div>
+        <div id="A14B6" class='masu'></div>
+        <div id="A14B7" class='masu'></div>
+        <div id="A14B8" class='masu'></div>
+        <div id="A14B9" class='masu'></div>
+        <div id="A14B10" class='masu'></div>
+        <div id="A14B11" class='masu'></div>
+        <div id="A14B12" class='masu'></div>
+        <div id="A14B13" class='masu'></div>
+        <div id="A14B14" class='masu'></div>
+        <div id="A14B15" class='masu'></div>
+        <div id="A14B16" class='masu'></div>
+        <div id="A14B17" class='masu'></div>
+        <div id="A14B18" class='masu'></div>
+
+        <div id="A15B0" class='masu'></div>
+        <div id="A15B1" class='masu'></div>
+        <div id="A15B2" class='masu'></div>
+        <div id="A15B3" class='masu'></div>
+        <div id="A15B4" class='masu'></div>
+        <div id="A15B5" class='masu'></div>
+        <div id="A15B6" class='masu'></div>
+        <div id="A15B7" class='masu'></div>
+        <div id="A15B8" class='masu'></div>
+        <div id="A15B9" class='masu'></div>
+        <div id="A15B10" class='masu'></div>
+        <div id="A15B11" class='masu'></div>
+        <div id="A15B12" class='masu'></div>
+        <div id="A15B13" class='masu'></div>
+        <div id="A15B14" class='masu'></div>
+        <div id="A15B15" class='masu'></div>
+        <div id="A15B16" class='masu'></div>
+        <div id="A15B17" class='masu'></div>
+        <div id="A15B18" class='masu'></div>
+
+        <div id="A16B0" class='masu'></div>
+        <div id="A16B1" class='masu'></div>
+        <div id="A16B2" class='masu'></div>
+        <div id="A16B3" class='masu'></div>
+        <div id="A16B4" class='masu'></div>
+        <div id="A16B5" class='masu'></div>
+        <div id="A16B6" class='masu'></div>
+        <div id="A16B7" class='masu'></div>
+        <div id="A16B8" class='masu'></div>
+        <div id="A16B9" class='masu'></div>
+        <div id="A16B10" class='masu'></div>
+        <div id="A16B11" class='masu'></div>
+        <div id="A16B12" class='masu'></div>
+        <div id="A16B13" class='masu'></div>
+        <div id="A16B14" class='masu'></div>
+        <div id="A16B15" class='masu'></div>
+        <div id="A16B16" class='masu'></div>
+        <div id="A16B17" class='masu'></div>
+        <div id="A16B18" class='masu'></div>
+
+        <div id="A17B0" class='masu'></div>
+        <div id="A17B1" class='masu'></div>
+        <div id="A17B2" class='masu'></div>
+        <div id="A17B3" class='masu'></div>
+        <div id="A17B4" class='masu'></div>
+        <div id="A17B5" class='masu'></div>
+        <div id="A17B6" class='masu'></div>
+        <div id="A17B7" class='masu'></div>
+        <div id="A17B8" class='masu'></div>
+        <div id="A17B9" class='masu'></div>
+        <div id="A17B10" class='masu'></div>
+        <div id="A17B11" class='masu'></div>
+        <div id="A17B12" class='masu'></div>
+        <div id="A17B13" class='masu'></div>
+        <div id="A17B14" class='masu'></div>
+        <div id="A17B15" class='masu'></div>
+        <div id="A17B16" class='masu'></div>
+        <div id="A17B17" class='masu'></div>
+        <div id="A17B18" class='masu'></div>
+
+        <div id="A18B0" class='masu'></div>
+        <div id="A18B1" class='masu'></div>
+        <div id="A18B2" class='masu'></div>
+        <div id="A18B3" class='masu'></div>
+        <div id="A18B4" class='masu'></div>
+        <div id="A18B5" class='masu'></div>
+        <div id="A18B6" class='masu'></div>
+        <div id="A18B7" class='masu'></div>
+        <div id="A18B8" class='masu'></div>
+        <div id="A18B9" class='masu'></div>
+        <div id="A18B10" class='masu'></div>
+        <div id="A18B11" class='masu'></div>
+        <div id="A18B12" class='masu'></div>
+        <div id="A18B13" class='masu'></div>
+        <div id="A18B14" class='masu'></div>
+        <div id="A18B15" class='masu'></div>
+        <div id="A18B16" class='masu'></div>
+        <div id="A18B17" class='masu'></div>
+        <div id="A18B18" class='masu'></div>
+        
         <span id="nico_0"></span>
         <span id="nico_1"></span>
         <span id="nico_2"></span>
@@ -702,6 +1454,9 @@
         <span id="nico_17"></span>
         <span id="nico_18"></span>
         <span id="nico_19"></span>
+    </div>
+    <div class="clickstart" id="clickstart">
+        <h2 style='color:white'>2 Players Join<br><br>then<br><br>Click start</h2>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -732,7 +1487,7 @@
     <!-- skyway -------------------------------------------------------- -->
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.1.js"></script>
     <!-- skyway -------------------------------------------------------- -->
-    <script src="js/mb.js"></script>
+    <script src="js/gomoku.js"></script>
 
     <footer></footer>
 </body>

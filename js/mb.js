@@ -6,7 +6,8 @@ let SVR         = url_value[2];               // urk内のserver名
 let yplay       = 0;                          // ページ表示時のプレイヤー区分
 let turn        = 0;
 let start_flg   = 0;
-const musica = new Audio('./bgm/hanjuku_lon.mp3');
+const musica = new Audio('./bgm/ed6fc_zeiss.mp3');
+const musicb = new Audio('./bgm/no.mp3');
 let mb_now    = [[0,0,0,0],
                  [0,0,0,0],
                  [0,0,0,0],
@@ -214,6 +215,7 @@ db_ban.on('value', function (data) { // 盤面の制御
     const v = data.val()
     let count_0 = 0;
     // console.log(v)
+    musicb.play();
 
     for(let i=0; i<4; i++){
         for(let j=0; j<4; j++){
