@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="ja" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -188,7 +188,7 @@
 			</section>
 			<section class="content content--c4" id='p4_section'>
 				
-				<a href="#" class="tilter tilter--4">
+				<a href="#" class="tilter tilter--4" id="C1">
 					<figure class="tilter__figure">
 						<img class="tilter__image" src="img/airplane.jpg" alt="img07" />
 						<div class="tilter__deco tilter__deco--shine"><div></div></div>
@@ -386,13 +386,19 @@
 
 		$('#B1').on('click', function(){
 			const name = $('#name').val();
-			const URL = './mb.html?n=' + name + '?s=donkey'
+			const URL = './mb.html?n=' + name + '?s=marubatsu'
 			name_judge(name, URL)
 		})
 
 		$('#B2').on('click', function(){
 			const name = $('#name').val();
-			const URL = './gomoku.html?n=' + name + '?s=donkey'
+			const URL = './gomoku.html?n=' + name + '?s=gomoku'
+			name_judge(name, URL)
+		})
+
+		$('#C1').on('click', function(){
+			const name = $('#name').val();
+			const URL = './sample_shooting/shooting.html?n=' + name + '?s=sample_shooting'
 			name_judge(name, URL)
 		})
 

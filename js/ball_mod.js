@@ -58,7 +58,7 @@ let STAGE_FLAG  = 1;                //どこまで進んだか判定（localstra
 let STAGE;                          // 現在のステージ
 let query       = location.search;  // index.htmlから持ち越したurlデータを読み取り
 let url_value   = query.split('='); // query内のデータを分ける 
-let user_name   = url_value[1].split('?')[0]; // url内のname
+let user_name   = decodeURI(url_value[1].split('?')[0]); // url内のname
 let SVR         = url_value[2];               // urk内のserver名
 let yplay       = 0;                          // ページ表示時のプレイヤー区分
 
@@ -420,7 +420,7 @@ function button_color(a, b, c) {
     $('#send').css('pointer-events', 'auto');
 }
 function name_date() {
-    let name;
+    let name ;
     if (!$('#name').val()) { name = 'NO_NAME'; } else { name = $('#name').val(); }
     const D = new Date()
     const dt = D.getMonth() + '/' + D.getDate() + ', ' + D.getHours() + ':' + D.getMinutes();
@@ -440,7 +440,7 @@ function csl_ind(a, b, c) {     // 画面下表示領域
     }
 }
 function send_chat() {          // チャット機能
-    let uname
+    let uname;
     if (!$('#name').val()) { uname = 'NO_NAME'; } else { uname = $('#name').val(); }
     const text = $('#txt').val();
     const D = new Date();

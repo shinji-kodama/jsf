@@ -1,7 +1,7 @@
 
 let query       = location.search;  // index.htmlから持ち越したurlデータを読み取り
 let url_value   = query.split('='); // query内のデータを分ける 
-let user_name   = url_value[1].split('?')[0]; // url内のname
+let user_name   = decodeURI(url_value[1].split('?')[0]); // url内のname
 let SVR         = url_value[2];               // urk内のserver名
 let yplay       = 0;                          // ページ表示時のプレイヤー区分
 let turn        = 0;
@@ -93,7 +93,7 @@ function csl_ind(a, b, c) {     // 画面下表示領域
     }
 }
 function send_chat() {          // チャット機能
-    let uname
+    let uname;
     if (!$('#name').val()) { uname = 'NO_NAME'; } else { uname = $('#name').val(); }
     const text = $('#txt').val();
     const D = new Date();
